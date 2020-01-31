@@ -11,7 +11,7 @@ function App() {
       s<span></span>
 
       <a
-        href = "index.html"
+        href = "http://no.html"
       >
       <button>Bisection </button>
       </a>
@@ -20,7 +20,7 @@ function App() {
       
 
       <a
-        href = "index.html"
+        href = "https://no.html"
       >
       <button>False Position </button>
       </a>

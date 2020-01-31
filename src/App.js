@@ -1,34 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
+
 import logo from './Nororu.svg';
 import './App.css';
 
-function App() {
+import menu from './menu';
+
+
+
+import Bisection from './Bisection';
+import FalsePos from './FalsePos';
+
+import {
+  Route,
+  NavLink,
+  Switch
+} from "react-router-dom";
+
+class App extends Component {
+
+  render() {
+
   return (
-    <div className="App">
-
-      <header className="App-header-up">
+    
       
-      s<span></span>
-
-      <a
-        href = "http://no.html"
-      >
-      <button>Bisection </button>
-      </a>
-
-      sp<span></span>
-      
-
-      <a
-        href = "https://no.html"
-      >
-      <button>False Position </button>
-      </a>
-      
-
-
-
-      </header>
 
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -50,8 +44,11 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
-  );
+
+    
+
+   );
+  }
 }
 
 export default App;

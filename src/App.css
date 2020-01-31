@@ -1,6 +1,52 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
 .App {
   text-align: center;
+  position: relative;
 }
+
+/* UP Text STYLES */
+.nav {
+  padding: 30px 0;
+  background-color: #222;
+}
+.nav a {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  margin: 0 15px;
+  padding: 10px;
+  border: 1px rgba(255,255,255,0.5) solid;
+  transition: all 0.3s linear;
+  text-decoration: none;
+  color: white;
+}
+.nav a.active {
+  background-color: rgb(244, 158, 252);
+  color: #222;
+}
+
+/* Space section */
+
+section {
+  padding: 40px 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.page {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+}
+
+
+
+
 
 .App-logo {
   height: 40vmin;

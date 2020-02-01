@@ -5,6 +5,11 @@ body {
   font-family: sans-serif;
 }
 .App {
+  background-color: #272e47;
+  min-height: 90vh;
+
+  color: #c7dae7;
+
   text-align: center;
   position: relative;
 }
@@ -47,7 +52,10 @@ section {
 
 
 
+.Pic-stop{
+  height: 40vmin;
 
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -72,7 +80,7 @@ section {
 
 .App-header {
   background-color: #272e47;
-  min-height: 93vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;

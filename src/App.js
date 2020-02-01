@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-
-import logo from './Nororu.svg';
 import './App.css';
 
-import menu from './menu';
-
-
-
+import Home from './Home';
 import Bisection from './Bisection';
 import FalsePos from './FalsePos';
 
@@ -17,38 +12,35 @@ import {
 } from "react-router-dom";
 
 class App extends Component {
-
+  
   render() {
-
   return (
-    
+
+
+    <div className="App">
+
+
+      <div className="nav">
+
+         <NavLink exact to ="/" activeClassName="active">Home </NavLink>
+         <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
+         <NavLink to ="/FalsePos" activeClassName="active">FalsePos</NavLink>
+
+      </div>
+           
+           <Switch>
+             <Route exact path = "/" component = {Home}/>
+             <Route path = "/Bisection" component = {Bisection}/>
+             <Route path="/FalsePos" component={FalsePos} />
+
+           </Switch>
       
 
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Newmer <code>src/App.js</code> and save to reload.
-        </p>
+    </div>
 
-        <p>
-          Very hard of Math in my life.
-        </p>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-    
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
-    
-
-   );
+    );
   }
+
 }
 
 export default App;

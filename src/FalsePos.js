@@ -9,7 +9,9 @@ const FalsePos = () =>{
         <div className = "App">
          <section>
 
-                <img src={logo} className="App-logo" alt="logo" />
+         <h1>FalsePos</h1>
+
+                <img src={logo} className="Pic-stop" alt="logo" />
                 <h1>Nororuuuuuuuuuuuuuuuuuuuuuuu</h1>
 
             </section>

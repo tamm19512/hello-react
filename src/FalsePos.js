@@ -5,15 +5,22 @@ import './App.css';
 
 function FalsePos() {
 
-        const [number1, setNumber1] = useState(0);
-        const [number2, setNumber2] = useState(0);
+        const [number1, setNumber1] = useState();
+        const [number2, setNumber2] = useState();
         const [total, setTotal] = useState(number1 + number2);
 
         function calculateTotal() {
 
             
             setTotal(number1 + number2);
-          }
+        }
+
+        function reset() {
+
+            
+            setNumber1('');
+            setNumber2('');
+        }
 
         return(
 
@@ -51,6 +58,8 @@ function FalsePos() {
  
 
                         <button onClick={calculateTotal}>Add Them!</button>
+                        <button onClick={reset}>Reset!</button>
+
                         <h2>{total}</h2>
 
             </div>

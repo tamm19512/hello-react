@@ -21,6 +21,8 @@ button {
   /* margin-bottom: 2px; */
   color: #d7cbf7;
   cursor: pointer;
+
+  margin-left: 15px;
 }
 
 input {

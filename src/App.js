@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Home from './Home';
-import Bisection from './Bisection';
-import FalsePos from './FalsePos';
+import Home from './Home.js';
+import Bisection from './Bisection.js';
+import FalsePos from './FalsePos.js';
+import test from './test.js';
 
 import {
   Route,
@@ -25,6 +26,7 @@ class App extends Component {
          <NavLink exact to ="/" activeClassName="active">Home </NavLink>
          <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
          <NavLink to ="/FalsePos" activeClassName="active">FalsePos</NavLink>
+         <NavLink to ="/test" activeClassName="active">test</NavLink>
 
       </div>
            
@@ -32,6 +34,7 @@ class App extends Component {
              <Route exact path = "/" component = {Home}/>
              <Route path = "/Bisection" component = {Bisection}/>
              <Route path="/FalsePos" component={FalsePos} />
+             <Route path="/test" component={test} />
 
            </Switch>
       

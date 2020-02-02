@@ -10,6 +10,8 @@ function FalsePos() {
         const [total, setTotal] = useState(number1 + number2);
 
         function calculateTotal() {
+
+            
             setTotal(number1 + number2);
           }
 

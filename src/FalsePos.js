@@ -17,7 +17,6 @@ function FalsePos() {
 
         function reset() {
 
-            
             setNumber1('');
             setNumber2('');
         }

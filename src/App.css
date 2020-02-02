@@ -4,30 +4,50 @@ body {
   font-family: sans-serif;
 }
 .App {
-  background-color: #272e47;
-  min-height: 90vh;
+  font-family: sans-serif;
+  background: #272e47;
+  min-height: 100vh;
   color: #c7dae7;
-  
-  position: relative;
-}
-.textcolumn{
-  
-  display: inline-flex;
   text-align: center;
-  flex-direction: row;
-  padding: 10px 0; 
-
   
 }
+
+button {
+  padding: 30px 40px;
+  font-size: 30px;
+  border-radius: 20px 40px;
+  background: #5f30e6;
+  border: none;
+  /* margin-bottom: 2px; */
+  color: #d7cbf7;
+  cursor: pointer;
+}
+
+input {
+  font-size: 50px;
+  border-radius: 10px;
+  border: 1px solid #d2c0fd;
+  width: 15%;
+  margin-left: 30px;
+  padding: 10px;
+  text-align: center;
+  background: #d2c0fd;
+  color: #2a1263;
+  
+}
+h1{
+  font-size: 30px;
+
+}
+h2 {
+  font-size: 50px;
+}
+
 .text-topic{
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #c7dae7;
-  padding: 10px;
+  margin-bottom: 50px;
+
+
 }
 .up-extext{
 
@@ -73,18 +93,7 @@ section {
   right: 0;
 }
 
-.Pic-stop{
-  display: inline-block;
-  width: 100px;
-  text-align: center;
-  margin: 0 15px;
-  padding: 20px;
-  border: 5px rgba(255,255,255,0.5) solid;
-  transition: all 0.3s linear;
-  text-decoration: none;
-  color: white;
 
-}
 
 
 .App-header {

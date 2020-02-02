@@ -1,36 +1,17 @@
-import React from 'react';
-
-import { render } from "react-dom";
-import { C2C } from "react-c2c";
-import styles from "./styles.js";
-
-var value1,value2
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import './App.css';
 
 
+function FalsePos() {
 
-class FalsePos extends React.Component {
+        const [number1, setNumber1] = useState(0);
+        const [number2, setNumber2] = useState(0);
+        const [total, setTotal] = useState(number1 + number2);
 
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          value1: "" ,value2: "",
-          clicks:0,show: true
-        };
-      }
-
-      
-    
-      IncrementItem = () => {
-        this.setState({ clicks: this.state.clicks + 1 });
-      }
-      ToggleClick = () => {
-        this.setState({ show: !this.state.show });
-      }
-
-      
-
-    render(){
+        function calculateTotal() {
+            setTotal(number1 + number2);
+          }
 
         return(
 
@@ -44,66 +25,37 @@ class FalsePos extends React.Component {
 
                 <div className = "text-topic">
                     
-                    <div className = "textcolumn">
-                        <p> input A </p>
 
+                        <h1> input A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; input B </h1>
+
+                        
                             <input
-
-                                value1={this.state.value1}
-                                onChange={({ target: { value } }) =>
-                                this.setState({ value })}
+                                type="number"
+                                value={number1}
+                                onChange={e => setNumber1(+e.target.value)}
+                                placeholder="0"
                             />
-
-                        
-                    </div>
-
-                    <div className = "textcolumn">
-                        <p> input B </p>
-
+     
+                    
                             <input
-
-                                value2={this.state.value2}
-                                onChange={({ target: { value2 } }) =>
-                                this.setState({ value2 })}
+                                type="number"
+                                value={number2}
+                                onChange={e => setNumber2(+e.target.value)}
+                                placeholder="0"
                             />
-
                         
-                    </div>
-
-                    <div className = "Pic-stop">
-
-                    <button onClick={this.IncrementItem}>Click to increment by 1</button>
-
-                    
-                    </div>
-                    <div className = "Pic-stop">
-
-                    
-                    <button onClick={this.ToggleClick}>
-                        
-                        { this.state.show ? 'Hide number' : 'Show number' }
-
-                    </button>
-
-                    { this.state.show ? <h2>{ this.state.clicks }</h2> : '' }
-
-                    </div>
-
-
-                        
-                
-                    
 
                 </div>
+ 
+
+                        <button onClick={calculateTotal}>Add Them!</button>
+                        <h2>{total}</h2>
 
             </div>
 
         )
 
-    }
-
-    
-
 }
-render(<FalsePos />, document.getElementById("root"));
+const rootElement = document.getElementById("root");
+ReactDOM.render(<FalsePos />, rootElement);
 export default FalsePos;

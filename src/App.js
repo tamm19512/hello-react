@@ -1,16 +1,53 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Home from './Home.js';
-import Bisection from './Bisection.js';
-import FalsePos from './FalsePos.js';
-import test from './test.js';
+import 'antd/dist/antd.css';
+import { Menu, Dropdown, Button } from 'antd';
+
+import Home from './Home'
+import Bisection from './Bisection'
+import FalsePos from './FalsePos'
+import test from './test'
 
 import {
   Route,
   NavLink,
   Switch
 } from "react-router-dom";
+
+
+const menu1 = (
+
+  
+
+  <Menu>
+
+    <div className="nav">
+
+        <Menu.Item>
+            <NavLink exact to ="/" activeClassName="active">Home </NavLink>
+        </Menu.Item>
+        
+        <Menu.Item>
+            <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
+        </Menu.Item>
+
+        <Menu.Item>
+            <NavLink to ="/FalsePos" activeClassName="active">FalsePos</NavLink>  
+        </Menu.Item>
+
+        <Menu.Item>
+            <NavLink to ="/test" activeClassName="active">test</NavLink>
+        </Menu.Item>
+        
+    </div>
+
+  </Menu>
+
+
+);
+
+
 
 class App extends Component {
   
@@ -20,13 +57,33 @@ class App extends Component {
 
     <div className="App">
 
+    <div className="nav">
 
-      <div className="nav">
+        <Dropdown overlay={menu1} placement="bottomLeft">
 
-         <NavLink exact to ="/" activeClassName="active">Home </NavLink>
-         <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
-         <NavLink to ="/FalsePos" activeClassName="active">FalsePos</NavLink>
-         <NavLink to ="/test" activeClassName="active">test</NavLink>
+          <button>Root of Equations</button>
+
+        </Dropdown>
+
+      <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+      
+
+        <Dropdown overlay={menu1} placement="bottomLeft">
+
+          <button>Linear</button>
+
+        </Dropdown>
+
+      <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+      
+
+        <Dropdown overlay={menu1} placement="bottomLeft">
+
+          <button>Iterative Method</button>
+
+        </Dropdown>
+         
+         
 
       </div>
            
@@ -42,8 +99,9 @@ class App extends Component {
     </div>
 
     );
+    
   }
+  
 
 }
-
 export default App;

@@ -22,7 +22,8 @@ button {
   color: #d7cbf7;
   cursor: pointer;
 
-  margin-left: 15px;
+  margin-right: 8px;
+  margin-bottom: 8px;
 }
 
 input {

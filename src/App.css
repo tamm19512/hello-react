@@ -11,6 +11,11 @@ body {
   color: #eaffec;
   font-size: 20px;
   
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(./wood.png);
+
   
 }
 
@@ -58,6 +63,10 @@ h1{
 }
 h2 {
   font-size: 30px;
+}
+
+.container{
+  background-image: url(./wood.png);
 }
 
 .text-topic{

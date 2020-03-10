@@ -30,6 +30,7 @@ const menu1 = (
         
         <Menu.Item>
             <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
+            
         </Menu.Item>
 
         <Menu.Item>
@@ -37,7 +38,15 @@ const menu1 = (
         </Menu.Item>
 
         <Menu.Item>
-            <NavLink to ="/test" activeClassName="active">test</NavLink>
+            <NavLink to ="/test" activeClassName="active">One Point Interaction</NavLink>
+        </Menu.Item>
+
+        <Menu.Item>
+            <NavLink to ="/test" activeClassName="active">Newton Raphson Method</NavLink>
+        </Menu.Item>
+
+        <Menu.Item>
+            <NavLink to ="/test" activeClassName="active">Secant Method</NavLink>
         </Menu.Item>
         
     </div>
@@ -49,58 +58,61 @@ const menu1 = (
 
 
 
-class App extends Component {
+function App (){
+
   
-  render() {
+  
+
   return (
 
 
     <div className="App">
 
-    <div className="nav">
+      <div className="nav">
 
-        <Dropdown overlay={menu1} placement="bottomLeft">
+          <Dropdown overlay={menu1} placement="bottomLeft">
 
-          <button>Root of Equations</button>
+             <button>Root of Equations</button>
 
-        </Dropdown>
+          </Dropdown>
 
-      <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
-      
+        <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+        
 
-        <Dropdown overlay={menu1} placement="bottomLeft">
+          <Dropdown overlay={menu1} placement="bottomLeft">
 
-          <button>Linear</button>
+            <button>Linear</button>
 
-        </Dropdown>
+          </Dropdown>
 
-      <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
-      
+        <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+        
 
-        <Dropdown overlay={menu1} placement="bottomLeft">
+          <Dropdown overlay={menu1} placement="bottomLeft">
 
-          <button>Iterative Method</button>
+            <button>Iterative Method</button>
 
-        </Dropdown>
-         
-         
+          </Dropdown>
+          
+          
+
+        </div>
+
+            
+            <Switch>
+              <Route exact path = "/" component = {Home}/>
+              <Route path = "/Bisection" component = {Bisection}/>
+              <Route path="/FalsePos" component={FalsePos} />
+              <Route path="/test" component={test} />
+
+            </Switch>
+        
 
       </div>
-           
-           <Switch>
-             <Route exact path = "/" component = {Home}/>
-             <Route path = "/Bisection" component = {Bisection}/>
-             <Route path="/FalsePos" component={FalsePos} />
-             <Route path="/test" component={test} />
 
-           </Switch>
-      
-
-    </div>
-
-    );
+    )
     
-  }
+  
   
 
 }

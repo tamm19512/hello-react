@@ -27,7 +27,7 @@ function FalsePos() {
 
                 <div className = "up-extext">
 
-                    <h3> FalsePos </h3>     
+                    <h1> FalsePos </h1>     
 
                 </div>
 

@@ -5,10 +5,12 @@ body {
 }
 .App {
   font-family: sans-serif;
-  background: #272e47;
-  min-height: 100vh;
-  color: #c7dae7;
   text-align: center;
+  background: #8445b89c;
+  min-height: 100vh;
+  color: #eaffec;
+  font-size: 20px;
+  
   
 }
 
@@ -26,24 +28,36 @@ button {
   margin-bottom: 8px;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 input {
-  font-size: 50px;
-  border-radius: 10px;
-  border: 1px solid #d2c0fd;
+
+  font-size: 70px;
+  border-radius: 15px;
+  border: 2px solid #ffffff;
   width: 15%;
-  margin-left: 30px;
+  margin-left: 50px;
   padding: 10px;
   text-align: center;
-  background: #d2c0fd;
+  background: #56399b;
   color: #2a1263;
   
 }
+
+.number-inputs {
+  margin-bottom: 20px;
+}
+
 h1{
-  font-size: 30px;
+  font-size: 50px;
 
 }
 h2 {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .text-topic{
@@ -57,7 +71,9 @@ h2 {
   font-size: calc(8px + 2vmin);
   text-align: center;
   padding: 10px;
-  border-bottom: 2px solid rgb(255, 161, 247);
+  background: #e8d6fa;
+  border-top: 5px solid rgb(255, 161, 247);
+  border-bottom: 5px solid rgb(255, 161, 247);
 }
 
 /* UP Text STYLES */

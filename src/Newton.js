@@ -10,7 +10,7 @@ const { parse } = require("mathjs");
 const { Column } = Table;
 const { Option } = Select;
 
-function Onepoint() {
+function Newton() {
 
     let [x, setx] = useState();
     let [fx, setfx] = useState();
@@ -19,7 +19,7 @@ function Onepoint() {
 
     const [datashow, setdatashow] = useState();
 
-    const onepoint = () => {
+    const newton = () => {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
         const eror = (x, prex) => Math.abs((x - prex) / x)
@@ -30,7 +30,7 @@ function Onepoint() {
 
           prex = x
 
-          x = f(fx,x)
+          x = x- (f(fx,x)/(x*2))
 
           queue_data.push({
             i: i,
@@ -55,7 +55,7 @@ function Onepoint() {
 
         setx(2);
 
-        setfx('2-E^(x/4)');
+        setfx('x^2-7');
     }
 
         return(
@@ -64,7 +64,7 @@ function Onepoint() {
 
                     <div className = "up-extext">
 
-                        <h1> One Point </h1>     
+                        <h1> Newton Raphon </h1>     
 
                     </div>
 
@@ -96,7 +96,7 @@ function Onepoint() {
 
                     </div>
 
-                    <button onClick={onepoint}>Add Them!</button>
+                    <button onClick={newton}>Add Them!</button>
                     <button onClick={set}>Set!</button>
 
                     <div className = "App-table">
@@ -138,4 +138,4 @@ function Onepoint() {
         )
     
 }
-export default Onepoint;
+export default Newton;

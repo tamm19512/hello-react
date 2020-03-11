@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import './App.css';
 
 import { Select, Row, Col, Table } from 'antd';
@@ -11,8 +10,6 @@ const { parse } = require("mathjs");
 const { Column } = Table;
 const { Option } = Select;
 
-
-
 function Bisection() {
 
     let [xl, setxl] = useState();
@@ -20,7 +17,6 @@ function Bisection() {
     let [fx, setfx] = useState();
     const [table, settable] = useState();
     const temp = []
-  
 
     const codebisection = () => {
         const f = (fx, value) => parse(fx).evaluate({ x: value })
@@ -57,8 +53,6 @@ function Bisection() {
         setfx('x^4-13');
     }
 
-  
-
         return(
 
                 <div className = "App">
@@ -83,7 +77,6 @@ function Bisection() {
 
                         />
 
-
                         <h2> xl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xr </h2>
 
                             
@@ -93,7 +86,6 @@ function Bisection() {
                                     onChange={e => setxl(+e.target.value)}
                                     placeholder="0"
                                 />
-
 
                                 <input
                                     type="number"
@@ -121,7 +113,7 @@ function Bisection() {
 
                     </div>
 
-                      <LineChart
+                    <LineChart
                         width={1900}
                         height={800}
                         data={table}
@@ -140,27 +132,14 @@ function Bisection() {
                             />
                             <Tooltip />
                             <Legend />
-                            <Line type="linear" dataKey="fxm" stroke="#82ca9d" />
-
-
+                            <Line type="linear" dataKey="fxm" stroke="#82ca9d" strokeWidth={4} />
+                            
 
                     </LineChart>
-
-                    
-
-                    
-
-
-
 
                 </div>
 
         )
     
-    
-    
-
 }
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Bisection />, rootElement);
 export default Bisection;

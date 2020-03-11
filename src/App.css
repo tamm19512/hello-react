@@ -37,7 +37,11 @@ button {
   margin: 0;
   padding: 0;
 }
+Line{
 
+  
+  
+}
 input {
 
   font-size: 70px;
@@ -74,12 +78,14 @@ h2 {
 
 
 }
+
+
 .up-extext{
 
   font-size: calc(8px + 2vmin);
   text-align: center;
   padding: 10px;
-  background: #e8d6fa;
+  background: #e8d6fac4;
   border-top: 5px solid rgb(255, 161, 247);
   border-bottom: 5px solid rgb(255, 161, 247);
 }

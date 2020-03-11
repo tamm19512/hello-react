@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import './App.css';
 
 
@@ -66,6 +65,4 @@ function FalsePos() {
         )
 
 }
-const rootElement = document.getElementById("root");
-ReactDOM.render(<FalsePos />, rootElement);
 export default FalsePos;

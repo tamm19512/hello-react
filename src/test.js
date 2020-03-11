@@ -1,31 +1,68 @@
-import React from 'react';
-import logo from './yunagi.svg';
+import React, { useState } from "react";
 import './App.css';
 
 
-const test = () =>{
+function Test() {
 
-    return(
-        <div className = "App">
-         <section>
+        const [number1, setNumber1] = useState();
+        const [number2, setNumber2] = useState();
+        const [total, setTotal] = useState(number1 + number2);
 
-                <img src={logo} className="App-logo" alt="logo" />
-                <h1>悠那_湯凪 Pixiv</h1>
+        function calculateTotal() {
 
-            </section>
+            
+            setTotal(number1 + number2);
+        }
 
-            <a
-                className="App-link"
-                href="https://www.pixiv.net/en/users/12628990"
-            >
-                <h1>My Pixiv</h1>
+        function reset() {
 
-            </a>
-        </div>
-    )
+            setNumber1('');
+            setNumber2('');
+        }
 
-    
+        return(
+
+            <div className = "App">
+
+                <div className = "up-extext">
+
+                    <h1> FalsePos </h1>     
+
+                </div>
+
+                <div className = "text-topic">
+                    
+
+                        <h1> input A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; input B </h1>
+
+                        
+                            <input
+                                type="number"
+                                value={number1}
+                                onChange={e => setNumber1(+e.target.value)}
+                                placeholder="0"
+                            />
+     
+                    
+                            <input
+                                type="number"
+                                value={number2}
+                                onChange={e => setNumber2(+e.target.value)}
+                                placeholder="0"
+                            />
+                        
+
+                </div>
+ 
+
+                        <button onClick={calculateTotal}>Add Them!</button>
+                        <button onClick={reset}>Reset!</button>
+
+                        <h2>{total}</h2>
+
+            </div>
+
+        )
 
 }
-
-export default test;
+export default Test;

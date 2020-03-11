@@ -7,7 +7,7 @@ import { Menu, Dropdown, Button } from 'antd';
 import Home from './Home'
 import Bisection from './Bisection'
 import FalsePos from './FalsePos'
-import test from './test'
+import Test from './Test'
 
 import {
   Route,
@@ -18,51 +18,46 @@ import {
 
 const menu1 = (
 
-  
+  <div className = "nav">
 
-  <Menu>
+      <Menu>
 
-    <div className="nav">
-
-        <Menu.Item>
-            <NavLink exact to ="/" activeClassName="active">Home </NavLink>
-        </Menu.Item>
-        
-        <Menu.Item>
-            <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
+            <Menu.Item>
+                <NavLink exact to ="/" activeClassName="active">Home </NavLink>
+            </Menu.Item>
             
-        </Menu.Item>
+            <Menu.Item>
+                <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
+                
+            </Menu.Item>
 
-        <Menu.Item>
-            <NavLink to ="/FalsePos" activeClassName="active">FalsePos</NavLink>  
-        </Menu.Item>
+            <Menu.Item>
+                <NavLink to ="/FalsePos" activeClassName="active">FalsePos</NavLink>  
+            </Menu.Item>
 
-        <Menu.Item>
-            <NavLink to ="/test" activeClassName="active">One Point Interaction</NavLink>
-        </Menu.Item>
+            <Menu.Item>
+                <NavLink to ="/Test" activeClassName="active">One Point Interaction</NavLink>
+            </Menu.Item>
 
-        <Menu.Item>
-            <NavLink to ="/test" activeClassName="active">Newton Raphson Method</NavLink>
-        </Menu.Item>
+            <Menu.Item>
+                <NavLink to ="/Test" activeClassName="active">Newton Raphson Method</NavLink>
+            </Menu.Item>
 
-        <Menu.Item>
-            <NavLink to ="/test" activeClassName="active">Secant Method</NavLink>
-        </Menu.Item>
-        
-    </div>
+            <Menu.Item>
+                <NavLink to ="/Test" activeClassName="active">Secant Method</NavLink>
+            </Menu.Item>
+            
 
-  </Menu>
+      </Menu>
+
+  </div>
 
 
 );
 
-
-
 function App (){
 
   
-  
-
   return (
 
 
@@ -94,8 +89,6 @@ function App (){
 
           </Dropdown>
           
-          
-
         </div>
 
             
@@ -103,7 +96,7 @@ function App (){
               <Route exact path = "/" component = {Home}/>
               <Route path = "/Bisection" component = {Bisection}/>
               <Route path="/FalsePos" component={FalsePos} />
-              <Route path="/test" component={test} />
+              <Route path="/Test" component={Test} />
 
             </Switch>
         
@@ -112,8 +105,5 @@ function App (){
 
     )
     
-  
-  
-
 }
 export default App;

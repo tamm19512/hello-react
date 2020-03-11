@@ -22,24 +22,30 @@ function Newton() {
     const newton = () => {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
-        const eror = (x, prex) => Math.abs((x - prex) / x)
+        const eror = (x, del) =>  100*(Math.abs((del / x))); 
         
-        var i = 0, prex
+        var i = 0, prex ,del
+
         
         while (true) {
 
           prex = x
 
-          x = x- (f(fx,x)/(x*2))
+
+          del = - (f(fx,x)/(x*2))
+
+          x = prex + del
 
           queue_data.push({
             i: i,
-            x: x.toFixed(6),
+            x: prex.toFixed(6),
             fx: f(fx, x).toFixed(6),
-            error: eror(x, prex).toFixed(6)
+            error: eror(x, del).toFixed(6)
           });
 
-            if(eror(x, prex) <= 0.000001){
+          
+
+            if(eror(x, del) <= 0.000001){
 
               break;
 

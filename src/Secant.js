@@ -10,36 +10,43 @@ const { parse } = require("mathjs");
 const { Column } = Table;
 const { Option } = Select;
 
-function Onepoint() {
+function Secant() {
 
-    let [x, setx] = useState();
+    let [xl, setxl] = useState();
+    let [xr, setxr] = useState();
     let [fx, setfx] = useState();
 
     const queue_data = []
 
     const [datashow, setdatashow] = useState();
 
-    const onepoint = () => {
+    const secant = () => {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
-        const eror = (x, prex) => 100*(Math.abs((x - prex)/x)); 
+        const eror = (xm, prexm) => Math.abs((xm - prexm) / xm)
         
-        var i = 0, prex
+        var i = 0, xm = 0, prexm
         
         while (true) {
 
-          prex = x
+          prexm = xm
+          xm = ( (xl * f(fx,xr)) - (xr * f(fx,xl)) ) / (f(fx,xr)- f(fx,xl))
 
-          x = f(fx,x)
+          if (f(fx, xm) * f(fx, xl) > 0) {
+            xl = xm
+          }
+          else {
+            xr = xm
+          }
 
           queue_data.push({
             i: i,
-            x: prex.toFixed(6),
-            fx: x.toFixed(6),
-            error: eror(x, prex).toFixed(6)
+            xm: xm.toFixed(6),
+            fxm: f(fx, xm).toFixed(6),
+            error: eror(xm, prexm).toFixed(6)
           });
 
-            if(eror(x, prex) <= 0.000001){
+            if(eror(xm, prexm) <= 0.000001){
 
               break;
 
@@ -53,9 +60,9 @@ function Onepoint() {
 
       function set() {
 
-        setx(2);
-
-        setfx('2-E^(x/4)');
+        setxl(2);
+        setxr(0.03);
+        setfx('x^2-7');
     }
 
         return(
@@ -64,7 +71,7 @@ function Onepoint() {
 
                     <div className = "up-extext">
 
-                        <h1> One Point </h1>     
+                        <h1> Secant Method </h1>     
 
                     </div>
 
@@ -82,29 +89,37 @@ function Onepoint() {
 
                         />
 
-                        <h2> x0 </h2>
+                        <h2> xl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xr </h2>
 
                             
                                 <input
                                     type="number"
-                                    value={x}
-                                    onChange={e => setx(+e.target.value)}
+                                    value={xl}
+                                    onChange={e => setxl(+e.target.value)}
                                     placeholder="0"
                                 />
+
+                                <input
+                                    type="number"
+                                    value={xr}
+                                    onChange={e => setxr(+e.target.value)}
+                                    placeholder="0"
+                                />
+
 
                         </div>
 
                     </div>
 
-                    <button onClick={onepoint}>Add Them!</button>
+                    <button onClick={secant}>Add Them!</button>
                     <button onClick={set}>Set!</button>
 
                     <div className = "App-table">
 
                       <Table style={{ marginTop: 30 }} dataSource={datashow}>
                         <Column title="Iterations" dataIndex="i" key="i" />
-                        <Column title="X" dataIndex="x" key="x" />
-                        <Column title="X(i+1)" dataIndex="fx" key="fx" />
+                        <Column title="xm" dataIndex="xm" key="xm" />
+                        <Column title="Fn(xm)" dataIndex="fxm" key="fxm" />
                         <Column title="Error" dataIndex="error" key="error" />
                       </Table>
 
@@ -120,17 +135,18 @@ function Onepoint() {
 
                     <CartesianGrid strokeDasharray="3 3" />
 
-                            <XAxis dataKey="x" />
+                            <XAxis dataKey="xm" />
                             <YAxis
                               type="number"
-                              dataKey="fx"
+                              dataKey="fxm"
                               domain={["auto", "auto"]}
                               allowDataOverflow="true"
                             />
                             <Tooltip />
                             <Legend />
-                            <Line type="linear" dataKey="fx" stroke="#82ca9d" strokeWidth={4} />
+                            <Line type="linear" dataKey="fxm" stroke="#82ca9d" strokeWidth={4} />
                             
+
                     </LineChart>
 
                 </div>
@@ -138,4 +154,4 @@ function Onepoint() {
         )
     
 }
-export default Onepoint;
+export default Secant;

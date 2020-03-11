@@ -10,6 +10,7 @@ import FalsePos from './FalsePos'
 import Onepoint from './Onepoint'
 import Test from './Test'
 import Newton from './Newton'
+import Secant from './Secant'
 
 import {
   Route,
@@ -46,7 +47,7 @@ const menu1 = (
             </Menu.Item>
 
             <Menu.Item>
-                <NavLink to ="/Test" activeClassName="active">Secant Method</NavLink>
+                <NavLink to ="/Secant" activeClassName="active">Secant Method</NavLink>
             </Menu.Item>
             
       </Menu>
@@ -117,6 +118,7 @@ function App (){
               <Route path="/FalsePos" component={FalsePos} />
               <Route path="/Onepoint" component={Onepoint} />
               <Route path="/Newton" component={Newton} />
+              <Route path="/Secant" component={Secant} />
 
               <Route path="/Test" component={Test} />
 

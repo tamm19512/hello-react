@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import './App.css';
 
-import { Card, Input, Button, Table, Col, Row } from 'antd';
+import { Select, Row, Col, Table } from 'antd';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
+
 import 'antd/dist/antd.css';
-const { parse } = require("mathjs");
 
+const { parse } = require("mathjs");
+const { Column } = Table;
+const { Option } = Select;
 
 
 
 function Bisection() {
 
-    const [xl, setxl] = useState();
-    const [xr, setxr] = useState();
-    const [fx, setfx] = useState();
-    const [data, setdata] = useState();
+    let [xl, setxl] = useState();
+    let [xr, setxr] = useState();
+    let [fx, setfx] = useState();
+    const [table, settable] = useState();
     const temp = []
-    const [x, setx] = useState(0)
+  
 
     const codebisection = () => {
         const f = (fx, value) => parse(fx).evaluate({ x: value })
@@ -35,21 +40,28 @@ function Bisection() {
           }
           temp.push({
             i: i,
-            x: xm.toFixed(6),
-            y: f(fx, xm).toFixed(6),
+            xm: xm.toFixed(6),
+            fxm: f(fx, xm).toFixed(6),
             error: e(xm, xm0).toFixed(6)
           });
           i++;
         }
-        setx(xm.toFixed(6))
-        setdata(temp)
+
+        settable(temp)
       }
+
+      function set() {
+
+        setxl(1.5);
+        setxr(2.0);
+        setfx('x^4-13');
+    }
 
   
 
         return(
 
-                <div className = "section">
+                <div className = "App">
 
                     <div className = "up-extext">
 
@@ -66,6 +78,7 @@ function Bisection() {
                         <input
 
                             placeholder="input function" 
+                            value={fx}
                             onChange={event => setfx(event.target.value)} 
 
                         />
@@ -95,6 +108,44 @@ function Bisection() {
                     </div>
 
                     <button onClick={codebisection}>Add Them!</button>
+                    <button onClick={set}>Set!</button>
+
+                    <Table style={{ marginTop: 30 }} dataSource={table}>
+                      <Column title="Iterations" dataIndex="i" key="i" />
+                      <Column title="xm" dataIndex="xm" key="xm" />
+                      <Column title="Fn(xm)" dataIndex="fxm" key="fxm" />
+                      <Column title="Error" dataIndex="error" key="error" />
+                    </Table>
+
+                    
+
+                      <LineChart
+                        width={1900}
+                        height={800}
+                        data={table}
+                        margin={{ top: 30, right: 20, left: 80, bottom: 5 }}
+                        style={{ backgroundColor: "#fff" }}
+                    >
+
+                    <CartesianGrid strokeDasharray="3 3" />
+
+                            <XAxis dataKey="x" />
+                            <YAxis
+                              type="number"
+                              dataKey="fxm"
+                              domain={["auto", "auto"]}
+                              allowDataOverflow="true"
+                            />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="linear" dataKey="fxm" stroke="#8884d8" />
+
+
+                    </LineChart>
+
+                    
+
+                    
 
 
 

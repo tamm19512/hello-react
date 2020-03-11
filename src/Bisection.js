@@ -110,14 +110,16 @@ function Bisection() {
                     <button onClick={codebisection}>Add Them!</button>
                     <button onClick={set}>Set!</button>
 
-                    <Table style={{ marginTop: 30 }} dataSource={table}>
-                      <Column title="Iterations" dataIndex="i" key="i" />
-                      <Column title="xm" dataIndex="xm" key="xm" />
-                      <Column title="Fn(xm)" dataIndex="fxm" key="fxm" />
-                      <Column title="Error" dataIndex="error" key="error" />
-                    </Table>
+                    <div className = "App-table">
 
-                    
+                      <Table style={{ marginTop: 30 }} dataSource={table}>
+                        <Column title="Iterations" dataIndex="i" key="i" />
+                        <Column title="xm" dataIndex="xm" key="xm" />
+                        <Column title="Fn(xm)" dataIndex="fxm" key="fxm" />
+                        <Column title="Error" dataIndex="error" key="error" />
+                      </Table>
+
+                    </div>
 
                       <LineChart
                         width={1900}

@@ -129,7 +129,7 @@ function Bisection() {
 
                     <CartesianGrid strokeDasharray="3 3" />
 
-                            <XAxis dataKey="x" />
+                            <XAxis dataKey="xm" />
                             <YAxis
                               type="number"
                               dataKey="fxm"
@@ -138,7 +138,8 @@ function Bisection() {
                             />
                             <Tooltip />
                             <Legend />
-                            <Line type="linear" dataKey="fxm" stroke="#8884d8" />
+                            <Line type="linear" dataKey="fxm" stroke="#82ca9d" />
+
 
 
                     </LineChart>

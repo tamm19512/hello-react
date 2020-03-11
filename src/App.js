@@ -7,6 +7,7 @@ import { Menu, Dropdown, Button } from 'antd';
 import Home from './Home'
 import Bisection from './Bisection'
 import FalsePos from './FalsePos'
+import Onepoint from './Onepoint'
 import Test from './Test'
 
 import {
@@ -36,7 +37,7 @@ const menu1 = (
             </Menu.Item>
 
             <Menu.Item>
-                <NavLink to ="/Test" activeClassName="active">One Point Interaction</NavLink>
+                <NavLink to ="/Onepoint" activeClassName="active">One Point Interaction</NavLink>
             </Menu.Item>
 
             <Menu.Item>
@@ -96,6 +97,7 @@ function App (){
               <Route exact path = "/" component = {Home}/>
               <Route path = "/Bisection" component = {Bisection}/>
               <Route path="/FalsePos" component={FalsePos} />
+              <Route path="/Onepoint" component={Onepoint} />
               <Route path="/Test" component={Test} />
 
             </Switch>

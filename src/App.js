@@ -108,22 +108,46 @@ function App (){
 
           </Dropdown>
 
-        <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
-        
+          <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+          
           <Dropdown overlay={menu2} placement="bottomLeft">
 
-            <button>Linear</button>
+            <button>Linear Algebra</button>
 
           </Dropdown>
 
-        <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
-        
+          <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+          <Dropdown overlay={menu3} placement="bottomLeft">
+
+            <button>Interpolation</button>
+
+          </Dropdown>
+
+          <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+          <Dropdown overlay={menu3} placement="bottomLeft">
+
+            <button>Least Square Method</button>
+
+          </Dropdown>
+
+          <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>        
 
           <Dropdown overlay={menu3} placement="bottomLeft">
 
             <button>Iterative Method</button>
 
           </Dropdown>
+
+        <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+        
+
+        <Dropdown overlay={menu3} placement="bottomLeft">
+
+          <button>Ordinary Differential Equations</button>
+
+        </Dropdown>
+
+          
           
         </div>
             

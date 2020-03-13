@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react";
 import './App.css';
 
-import { Select,Table,Col } from 'antd';
+import { Select,Table} from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
 
 import 'antd/dist/antd.css';

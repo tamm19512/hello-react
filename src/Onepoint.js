@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import './App.css';
 
 import { Select,Table } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
 
 import 'antd/dist/antd.css';
+import axios from 'axios';
 
 const { parse } = require("mathjs");
 const { Column } = Table;
@@ -12,34 +13,74 @@ const { Option } = Select;
 
 function Onepoint() {
 
-    let [x, setx] = useState();
+    let [x0, setx0] = useState();
     let [fx, setfx] = useState();
 
     const queue_data = []
 
     const [datashow, setdatashow] = useState();
 
+  const [getafcs, setgetafcs] = useState();
+  const [getafx, setgetafx] = useState();
+  let [getaX0, setgetaX0] = useState()
+
+    useEffect(() => {
+      axios.get("http://localhost:3001/api/users/showonepoint").then(res => {
+        console.log(res.data);
+        console.log(fx, x0)
+        const tempfx = []
+        const tempfcs = []
+        const tempX0 = []
+
+        for (let i = 0; i < res.data.data.length; i++) {
+          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>x0 : {res.data.data[i].x0} </Option>)
+          tempfx.push(res.data.data[i].fx)
+          tempX0.push(res.data.data[i].x0)
+
+          console.log(tempfx[i])
+          console.log(tempX0[i])
+ 
+        }
+        setgetafcs(tempfcs)
+        setgetafx(tempfx)
+        setgetaX0(tempX0)
+      })
+    }, [])
+
+
+    function menu(value){
+
+      
+          setfx(getafx[value])
+          setx0(getaX0[value])
+
+
+          console.log('fx =', fx)
+          console.log('X0 =', x0)
+
+    }
+
     const onepoint = () => {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
-        const eror = (x, prex) => Math.abs((x - prex) / x)
+        const eror = (x0, prex) => Math.abs((x0 - prex) / x0)
          
         var i = 0, prex
         
         while (true) {
 
-          prex = x
+          prex = x0
 
-          x = f(fx,x)
+          x0 = f(fx,x0)
 
           queue_data.push({
             i: i,
-            x: prex.toFixed(6),
-            fx: x.toFixed(6),
-            error: eror(x, prex).toFixed(6)
+            x0: prex.toFixed(6),
+            fx: x0.toFixed(6),
+            error: eror(x0, prex).toFixed(6)
           });
 
-            if(eror(x, prex) <= 0.000001){
+            if(eror(x0, prex) <= 0.000001){
 
               break;
 
@@ -53,7 +94,7 @@ function Onepoint() {
 
       function set() {
 
-        setx(2);
+        setx0(2);
 
         setfx('2-E^(x/4)');
     }
@@ -87,8 +128,8 @@ function Onepoint() {
                             
                                 <input
                                     type="number"
-                                    value={x}
-                                    onChange={e => setx(+e.target.value)}
+                                    value={x0}
+                                    onChange={e => setx0(+e.target.value)}
                                     placeholder="0"
                                 />
 
@@ -98,6 +139,13 @@ function Onepoint() {
 
                     <button onClick={onepoint}>Add Them!</button>
                     <button onClick={set}>Set!</button>
+
+                    
+                    <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+
+                       {getafcs}
+
+                    </Select>
 
                     <div className = "App-table">
 

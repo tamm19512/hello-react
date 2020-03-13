@@ -28,6 +28,22 @@ button {
   margin-bottom: 8px;
 }
 
+Select{
+
+  font-size: 70px;
+  border-radius: 15px;
+  border: 2px solid #ffffff;
+  
+  width: 15%;
+  margin-left: 5px;
+  padding: 10px;
+  text-align: center;
+  background: #56399b;
+  color: #2a1263;
+
+
+
+}
 input {
 
   font-size: 70px;

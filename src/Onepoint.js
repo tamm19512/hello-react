@@ -22,8 +22,8 @@ function Onepoint() {
     const onepoint = () => {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
-        const eror = (x, prex) => 100*(Math.abs((x - prex)/x)); 
-        
+        const eror = (x, prex) => Math.abs((x - prex) / x)
+         
         var i = 0, prex
         
         while (true) {

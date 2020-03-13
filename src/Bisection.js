@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import './App.css';
 
-import { Select,Table } from 'antd';
+import { Select,Table,Col } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
 
 import 'antd/dist/antd.css';
+import axios from 'axios';
 
 const { parse } = require("mathjs");
 const { Column } = Table;
@@ -20,9 +21,60 @@ function Bisection() {
 
     const [datashow, setdatashow] = useState();
 
+  const [getafcs, setgetafcs] = useState();
+  const [getafx, setgetafx] = useState();
+  let [getaXL, setgetaXL] = useState()
+  let [getaXR, setgetaXR] = useState()
+
+    useEffect(() => {
+      axios.get("http://localhost:3001/api/users/showbisection").then(res => {
+        console.log(res.data);
+        console.log(fx, xl, xr)
+        const tempfx = []
+        const tempfcs = []
+        const tempXL = []
+        const tempXR = []
+        for (let i = 0; i < res.data.data.length; i++) {
+          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>xl : {res.data.data[i].xl} || xr: {res.data.data[i].xr} </Option>)
+          tempfx.push(res.data.data[i].fx)
+          tempXL.push(res.data.data[i].xl)
+          tempXR.push(res.data.data[i].xr)
+          console.log(tempfx[i])
+          console.log(tempXL[i])
+          console.log(tempXR[i])
+        }
+        setgetafcs(tempfcs)
+        setgetafx(tempfx)
+        setgetaXL(tempXL)
+        setgetaXR(tempXR)
+      })
+    }, [])
+
+
+    function menu(value){
+
+      
+          setfx(getafx[value])
+          setxl(getaXL[value])
+          setxr(getaXR[value])
+
+
+          console.log('fx =', fx)
+          console.log('XL =', xl)
+          console.log('XR =', xr)
+
+
+
+
+    }
+
+    
+
+
     const bisection = () => {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
+
         const eror = (xm, prexm) => Math.abs((xm - prexm) / xm)
         
         var i = 0, xm = 0, prexm
@@ -77,42 +129,48 @@ function Bisection() {
 
                     <div className = "text-topic">
 
-                    <div className="number-inputs">
 
-                        <h2>fn</h2>
+                          <h2>fn</h2>
 
-                        <input
+                          <input
 
-                            placeholder="input function" 
-                            value={fx}
-                            onChange={event => setfx(event.target.value)} 
+                              placeholder="input function" 
+                              value={fx}
+                              onChange={event => setfx(event.target.value)} 
 
-                        />
+                          />
 
-                        <h2> xl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xr </h2>
+                          <h2> xl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xr </h2>
 
-                            
-                                <input
-                                    type="number"
-                                    value={xl}
-                                    onChange={e => setxl(+e.target.value)}
-                                    placeholder="0"
-                                />
+                              
+                                  <input
+                                      type="number"
+                                      value={xl}
+                                      onChange={e => setxl(+e.target.value)}
+                                      placeholder="0"
+                                  />
 
-                                <input
-                                    type="number"
-                                    value={xr}
-                                    onChange={e => setxr(+e.target.value)}
-                                    placeholder="0"
-                                />
+                                  <input
+                                      type="number"
+                                      value={xr}
+                                      onChange={e => setxr(+e.target.value)}
+                                      placeholder="0"
+                                  />
 
-
-                        </div>
 
                     </div>
 
                     <button onClick={bisection}>Add Them!</button>
+                    
                     <button onClick={set}>Set!</button>
+
+
+                       <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+
+                           {getafcs}
+
+                       </Select>
+      
 
                     <div className = "App-table">
 

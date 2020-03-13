@@ -12,8 +12,8 @@ const { Option } = Select;
 
 function Secant() {
 
-    let [xl, setxl] = useState();
-    let [xr, setxr] = useState();
+    let [x0, setx0] = useState();
+    let [x1, setx1] = useState();
     let [fx, setfx] = useState();
 
     const queue_data = []
@@ -30,15 +30,9 @@ function Secant() {
         while (true) {
 
           prexm = xm
-          xm = ( (xl * f(fx,xr)) - (xr * f(fx,xl)) ) / (f(fx,xr)- f(fx,xl))
 
-          if (f(fx, xm) * f(fx, xl) > 0) {
-            xl = xm
-          }
-          else {
-            xr = xm
-          }
-
+          xm = x1 - ( (f(fx,x1)* (x0-x1)) / (f(fx,x0)-f(fx,x1)) )
+         
           queue_data.push({
             i: i,
             xm: xm.toFixed(6),
@@ -52,6 +46,8 @@ function Secant() {
 
             }
 
+          x0 = x1
+          x1 = xm
           i++;
         }
 
@@ -60,8 +56,8 @@ function Secant() {
 
       function set() {
 
-        setxl(2);
-        setxr(0.03);
+        setx0(2);
+        setx1(2.5);
         setfx('x^2-7');
     }
 
@@ -94,15 +90,15 @@ function Secant() {
                             
                                 <input
                                     type="number"
-                                    value={xl}
-                                    onChange={e => setxl(+e.target.value)}
+                                    value={x0}
+                                    onChange={e => setx0(+e.target.value)}
                                     placeholder="0"
                                 />
 
                                 <input
                                     type="number"
-                                    value={xr}
-                                    onChange={e => setxr(+e.target.value)}
+                                    value={x1}
+                                    onChange={e => setx1(+e.target.value)}
                                     placeholder="0"
                                 />
 

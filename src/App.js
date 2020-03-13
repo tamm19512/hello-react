@@ -31,7 +31,6 @@ const menu1 = (
             
             <Menu.Item>
                 <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
-                
             </Menu.Item>
 
             <Menu.Item>
@@ -75,6 +74,24 @@ const menu2 = (
 
 );
 
+const menu3 = (
+
+  <div className = "nav">
+
+      <Menu>
+
+            <Menu.Item>
+
+            </Menu.Item>
+
+
+      </Menu>
+
+  </div>
+
+
+);
+
 function App (){
 
   
@@ -93,7 +110,6 @@ function App (){
 
         <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
         
-
           <Dropdown overlay={menu2} placement="bottomLeft">
 
             <button>Linear</button>
@@ -103,14 +119,13 @@ function App (){
         <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
         
 
-          <Dropdown overlay={menu2} placement="bottomLeft">
+          <Dropdown overlay={menu3} placement="bottomLeft">
 
             <button>Iterative Method</button>
 
           </Dropdown>
           
         </div>
-
             
             <Switch>
               <Route exact path = "/" component = {Home}/>

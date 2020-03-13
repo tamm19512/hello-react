@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import './App.css';
 
 import { Select,Table } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
 
 import 'antd/dist/antd.css';
+import axios from 'axios';
 
 const { parse } = require("mathjs");
 const { Column } = Table;
@@ -12,36 +13,75 @@ const { Option } = Select;
 
 function Newton() {
 
-    let [x, setx] = useState();
+    let [x0, setx0] = useState();
     let [fx, setfx] = useState();
 
     const queue_data = []
 
     const [datashow, setdatashow] = useState();
+    const [getafcs, setgetafcs] = useState();
+    const [getafx, setgetafx] = useState();
+    let [getaX0, setgetaX0] = useState()
+  
+      useEffect(() => {
+        axios.get("http://localhost:3001/api/users/shownewton").then(res => {
+          console.log(res.data);
+          console.log(fx, x0)
+          const tempfx = []
+          const tempfcs = []
+          const tempX0 = []
+  
+          for (let i = 0; i < res.data.data.length; i++) {
+            tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>x0 : {res.data.data[i].x0} </Option>)
+            tempfx.push(res.data.data[i].fx)
+            tempX0.push(res.data.data[i].x0)
+  
+            console.log(tempfx[i])
+            console.log(tempX0[i])
+   
+          }
+          setgetafcs(tempfcs)
+          setgetafx(tempfx)
+          setgetaX0(tempX0)
+        })
+      }, [])
+  
+  
+      function menu(value){
+  
+        
+            setfx(getafx[value])
+            setx0(getaX0[value])
+  
+  
+            console.log('fx =', fx)
+            console.log('X0 =', x0)
+  
+      }
 
     const newton = () => {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
-        const eror = (x, prex) => Math.abs((x - prex) / x)
+        const eror = (x0, prex) => Math.abs((x0 - prex) / x0)
         
         var i = 0, prex ,del
         
         while (true) {
 
-          prex = x
+          prex = x0
 
-          del = - (f(fx,x)/(x*2))
+          del = - (f(fx,x0)/(x0*2))
 
-          x = prex + del
+          x0 = prex + del
 
           queue_data.push({
             i: i,
             x: prex.toFixed(6),
-            fx: f(fx, x).toFixed(6),
-            error: eror(x, prex).toFixed(6)
+            fx: f(fx, x0).toFixed(6),
+            error: eror(x0, prex).toFixed(6)
           });
 
-            if(eror(x, prex) <= 0.000001){
+            if(eror(x0, prex) <= 0.000001){
 
               break;
 
@@ -55,10 +95,12 @@ function Newton() {
 
       function set() {
 
-        setx(2);
+        setx0(2);
 
         setfx('x^2-7');
     }
+
+    const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
 
         return(
 
@@ -89,8 +131,8 @@ function Newton() {
                             
                                 <input
                                     type="number"
-                                    value={x}
-                                    onChange={e => setx(+e.target.value)}
+                                    value={x0}
+                                    onChange={e => setx0(+e.target.value)}
                                     placeholder="0"
                                 />
 
@@ -99,7 +141,18 @@ function Newton() {
                     </div>
 
                     <button onClick={newton}>Add Them!</button>
+
+                    {span}
+
                     <button onClick={set}>Set!</button>
+
+                    {span}
+
+                    <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+
+                       {getafcs}
+
+                    </Select>
 
                     <div className = "App-table">
 

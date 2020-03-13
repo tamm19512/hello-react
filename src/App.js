@@ -94,6 +94,8 @@ const menu3 = (
 
 function App (){
 
+  const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+
   
   return (
 
@@ -108,38 +110,38 @@ function App (){
 
           </Dropdown>
 
-          <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
-          
+          {span}
+
           <Dropdown overlay={menu2} placement="bottomLeft">
 
             <button>Linear Algebra</button>
 
           </Dropdown>
 
-          <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+          {span}
+
           <Dropdown overlay={menu3} placement="bottomLeft">
 
             <button>Interpolation</button>
 
           </Dropdown>
 
-          <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
+          {span}
+          
           <Dropdown overlay={menu3} placement="bottomLeft">
 
             <button>Least Square Method</button>
 
           </Dropdown>
 
-          <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>        
-
+          {span}
           <Dropdown overlay={menu3} placement="bottomLeft">
 
             <button>Iterative Method</button>
 
           </Dropdown>
 
-        <h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>
-        
+          {span}        
 
         <Dropdown overlay={menu3} placement="bottomLeft">
 

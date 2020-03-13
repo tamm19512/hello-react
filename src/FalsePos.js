@@ -68,6 +68,8 @@ function FalsePos() {
 
     }
 
+    
+
     const falsepos = () => {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
@@ -112,6 +114,8 @@ function FalsePos() {
         setxr(0.03);
         setfx('1/x-43');
     }
+
+    const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
 
         return(
 
@@ -160,7 +164,12 @@ function FalsePos() {
                     </div>
 
                     <button onClick={falsepos}>Add Them!</button>
+
+                    {span}
+
                     <button onClick={set}>Set!</button>
+
+                    {span}
 
                     <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
 

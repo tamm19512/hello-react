@@ -68,6 +68,8 @@ function Bisection() {
 
     }
 
+
+
     
 
 
@@ -117,6 +119,8 @@ function Bisection() {
         setfx('x^4-13');
     }
 
+    const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+
         return(
 
                 <div className = "App">
@@ -161,8 +165,12 @@ function Bisection() {
                     </div>
 
                     <button onClick={bisection}>Add Them!</button>
+
+                    {span}
                     
                     <button onClick={set}>Set!</button>
+
+                    {span}
 
 
                        <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>

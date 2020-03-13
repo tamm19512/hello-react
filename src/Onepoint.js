@@ -99,6 +99,8 @@ function Onepoint() {
         setfx('2-E^(x/4)');
     }
 
+    const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+
         return(
 
                 <div className = "App">
@@ -138,8 +140,12 @@ function Onepoint() {
                     </div>
 
                     <button onClick={onepoint}>Add Them!</button>
+
+                    {span}
+
                     <button onClick={set}>Set!</button>
 
+                    {span}
                     
                     <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
 

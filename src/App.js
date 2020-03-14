@@ -8,9 +8,12 @@ import Home from './Home'
 import Bisection from './Bisection'
 import FalsePos from './FalsePos'
 import Onepoint from './Onepoint'
-import Test from './Test'
 import Newton from './Newton'
 import Secant from './Secant'
+
+import Cramer from './Cramer'
+
+import Test from './Test'
 
 import {
   Route,
@@ -62,7 +65,8 @@ const menu2 = (
       <Menu>
 
             <Menu.Item>
-            <NavLink to ="/Test" activeClassName="active">Test</NavLink>
+
+                <NavLink to ="/Cramer" activeClassName="active">Cramer</NavLink>
                 
             </Menu.Item>
 
@@ -81,6 +85,8 @@ const menu3 = (
       <Menu>
 
             <Menu.Item>
+
+            <NavLink to ="/Test" activeClassName="active">Test</NavLink>
 
             </Menu.Item>
 
@@ -135,6 +141,7 @@ function App (){
           </Dropdown>
 
           {span}
+          
           <Dropdown overlay={menu3} placement="bottomLeft">
 
             <button>Iterative Method</button>
@@ -160,6 +167,8 @@ function App (){
               <Route path="/Onepoint" component={Onepoint} />
               <Route path="/Newton" component={Newton} />
               <Route path="/Secant" component={Secant} />
+
+              <Route path="/Cramer" component={Cramer} />
 
               <Route path="/Test" component={Test} />
 

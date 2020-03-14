@@ -141,7 +141,7 @@ function FalsePos() {
 
                         />
 
-                        <h2> xl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xr </h2>
+                        <h2> xl  {span}{span}  xr </h2>
 
                             
                                 <input

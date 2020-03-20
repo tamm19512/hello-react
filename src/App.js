@@ -18,6 +18,10 @@ import Comtrapezoidal from './Comtrapezoidal'
 import Simpson from './Simpson'
 import Comsimpson from './Comsimpson'
 
+import Linear_inter_N from './Linear_inter_N'
+import Quadratic_inter_N from './Quadratic_inter_N'
+import Polynomial_inter_N from './Polynomial_inter_N'
+
 import Test from './Test'
 
 import {
@@ -33,10 +37,6 @@ const menu1 = (
 
       <Menu>
 
-            <Menu.Item>
-                <NavLink exact to ="/" activeClassName="active">Home </NavLink>
-            </Menu.Item>
-            
             <Menu.Item>
                 <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
             </Menu.Item>
@@ -91,19 +91,19 @@ const menu3 = (
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Linear Interpolation (Newton)</NavLink>
+            <NavLink to ="/Linear_inter_N" activeClassName="active">Linear Interpolation (Newton)</NavLink>
 
             </Menu.Item>
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Quadratic Interpolation (Newton)</NavLink>
+            <NavLink to ="/Quadratic_inter_N" activeClassName="active">Quadratic Interpolation (Newton)</NavLink>
 
             </Menu.Item>
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Polynomial Interpolation (Newton)</NavLink>
+            <NavLink to ="/Polynomial_inter_N" activeClassName="active">Polynomial Interpolation (Newton)</NavLink>
 
             </Menu.Item>
 
@@ -197,6 +197,10 @@ function App (){
 
       <div className="nav">
 
+         <NavLink exact to ="/" activeClassName="active">Home </NavLink>
+
+          {span}
+
           <Dropdown overlay={menu1} placement="bottomLeft">
 
              <button>Root of Equations</button>
@@ -243,6 +247,7 @@ function App (){
             
             <Switch>
               <Route exact path = "/" component = {Home}/>
+
               <Route path = "/Bisection" component = {Bisection}/>
               <Route path="/FalsePos" component={FalsePos} />
               <Route path="/Onepoint" component={Onepoint} />
@@ -250,6 +255,10 @@ function App (){
               <Route path="/Secant" component={Secant} />
 
               <Route path="/Cramer" component={Cramer} />
+
+              <Route path="/Linear_inter_N" component={Linear_inter_N} />
+              <Route path="/Quadratic_inter_N" component={Quadratic_inter_N} />
+              <Route path="/Polynomial_inter_N" component={Polynomial_inter_N} />
 
               <Route path="/Trapezoidal" component={Trapezoidal} />
               <Route path="/Comtrapezoidal" component={Comtrapezoidal} />

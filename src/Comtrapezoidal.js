@@ -15,10 +15,11 @@ mathjs.import(mathInt)
 const { Column } = Table;
 const { Option } = Select;
 
-function Trapezoidal() {
+function Comtrapezoidal() {
 
     let [a, seta] = useState();
     let [b, setb] = useState();
+    let [n, setn] = useState();
     let [fx, setfx] = useState();
 
     const queue_data = []
@@ -56,19 +57,14 @@ function Trapezoidal() {
 
 
     function menu(value){
-
-      
+   
           setfx(getafx[value])
           seta(getaXL[value])
           setb(getaXR[value])
 
-
           console.log('fx =', fx)
           console.log('XL =', a)
           console.log('XR =', b)
-
-
-
 
     }
 
@@ -76,35 +72,55 @@ function Trapezoidal() {
       
         const f = (fx, value) => parse(fx).evaluate({ x: value })
         const inte =  mathjs.integral(fx,'x')
-        const toString = inte.toString()
-        
+        const toString = inte.toString()    
 
         const eror = (ans, I) => ((ans - I) / ans)*100
         
-        var x0,x1,I,a1,a2,ans
+        var x0,x1,h,data=a,ans=0,i,ans2,a1,a2
         var I2 = ""
+       
+        h=(b-a)/n
 
         x0 = f(fx,a)
+        ans = ans+x0
+
+        queue_data.push({
+            
+            x: x0.toFixed(6),
+
+          });
+
+        for(i=1;i<=n-1;i++){
+
+            data = data+h
+            ans = ans+(2*f(fx,data))
+
+            queue_data.push({
+            
+                x: f(fx,data).toFixed(6),
+    
+            });
+        }
+        
         x1 = f(fx,b)
-        I = ((b-a)/2)*(x0+x1)
+        ans = ans+x1
+
+        ans2 = (h/2)*ans
 
         I2 = toString
 
         a1 = f(I2,a)
         a2 = f(I2,b)
 
-        ans = a2-a1
+        ans = a1+a2
 
           queue_data.push({
             
-            x0: x0.toFixed(6),
-            x1: x1.toFixed(6),
-            I: I.toFixed(6),
+            x: x1.toFixed(6),
             ans: ans.toFixed(6),
-            error: eror(ans, I).toFixed(2)+" %"
+            ans2: ans2.toFixed(6),
+            error: eror(ans, ans2).toFixed(2)+" %"
           });
-
-        
 
         setdatashow(queue_data)
       }
@@ -113,6 +129,7 @@ function Trapezoidal() {
 
         seta(0);
         setb(2);
+        setn(4);
         setfx('(2*(x^3))-(5*(x^2))+(3*x)+1');
     }
 
@@ -124,7 +141,7 @@ function Trapezoidal() {
 
                     <div className = "up-extext">
 
-                        <h1> Trapezoidal Rule </h1>     
+                        <h1> Composite Trapezoidal Rule </h1>     
 
                     </div>
 
@@ -141,7 +158,7 @@ function Trapezoidal() {
 
                           />
 
-                          <h2> a {span}{span} b </h2>
+                          <h2> a {span}{span} b {span}{span} n</h2>
 
                               
                                   <input
@@ -155,6 +172,13 @@ function Trapezoidal() {
                                       type="number"
                                       value={b}
                                       onChange={e => setb(+e.target.value)}
+                                      placeholder="0"
+                                  />
+
+                                  <input
+                                      type="number"
+                                      value={n}
+                                      onChange={e => setn(+e.target.value)}
                                       placeholder="0"
                                   />
 
@@ -180,10 +204,9 @@ function Trapezoidal() {
                     <div className = "App-table">
 
                       <Table style={{ marginTop: 30 }} dataSource={datashow}>
-                        <Column title="x0" dataIndex="x0" key="x0" />
-                        <Column title="x1" dataIndex="x1" key="x1" />
-                        <Column title="I" dataIndex="I" key="I" />
-                        <Column title="Ans" dataIndex="ans" key="ans" />
+                        <Column title="Fxn" dataIndex="x" key="x" />
+                        <Column title="sumFxn" dataIndex="ans" key="ans" />
+                        <Column title="I" dataIndex="ans2" key="ans2" />
                         <Column title="Error" dataIndex="error" key="error" />
                       </Table>
 
@@ -195,4 +218,4 @@ function Trapezoidal() {
         )
     
 }
-export default Trapezoidal;
+export default Comtrapezoidal;

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
 import 'antd/dist/antd.css';
-import { Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown } from 'antd';
 
 import Home from './Home'
 import Bisection from './Bisection'
@@ -14,6 +14,9 @@ import Secant from './Secant'
 import Cramer from './Cramer'
 
 import Trapezoidal from './Trapezoidal'
+import Comtrapezoidal from './Comtrapezoidal'
+import Simpson from './Simpson'
+import Comsimpson from './Comsimpson'
 
 import Test from './Test'
 
@@ -88,19 +91,19 @@ const menu3 = (
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Linear Interpolation</NavLink>
+            <NavLink to ="/Test" activeClassName="active">Linear Interpolation (Newton)</NavLink>
 
             </Menu.Item>
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Quadratic Interpolation</NavLink>
+            <NavLink to ="/Test" activeClassName="active">Quadratic Interpolation (Newton)</NavLink>
 
             </Menu.Item>
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Polynomial Interpolation</NavLink>
+            <NavLink to ="/Test" activeClassName="active">Polynomial Interpolation (Newton)</NavLink>
 
             </Menu.Item>
 
@@ -158,13 +161,19 @@ const menu5 = (
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Composite Trapezoidal Rule</NavLink>
+            <NavLink to ="/Comtrapezoidal" activeClassName="active">Composite Trapezoidal Rule</NavLink>
 
             </Menu.Item>
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Simpson's Rule</NavLink>
+            <NavLink to ="/Simpson" activeClassName="active">Simpson's Rule</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/ComSimpson" activeClassName="active">Composite Simpson's Rule</NavLink>
 
             </Menu.Item>
 
@@ -206,7 +215,7 @@ function App (){
 
           <Dropdown overlay={menu3} placement="bottomLeft">
 
-            <button>Interpolation</button>
+            <button>Interpolation <br/>and Extrapolation</button>
 
           </Dropdown>
 
@@ -222,7 +231,7 @@ function App (){
           
           <Dropdown overlay={menu5} placement="bottomLeft">
 
-            <button>Numerical Integration and Differentation</button>
+            <button>Numerical Integration <br/> and Differentation</button>
 
           </Dropdown>
 
@@ -243,6 +252,9 @@ function App (){
               <Route path="/Cramer" component={Cramer} />
 
               <Route path="/Trapezoidal" component={Trapezoidal} />
+              <Route path="/Comtrapezoidal" component={Comtrapezoidal} />
+              <Route path="/Simpson" component={Simpson} />
+              <Route path="/Comsimpson" component={Comsimpson} />
 
               <Route path="/Test" component={Test} />
 

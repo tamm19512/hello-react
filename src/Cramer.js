@@ -5,8 +5,6 @@ import { Select,Table,InputNumber, Button,Layout} from 'antd';
 
 import 'antd/dist/antd.css';
 
-const { Content } = Layout;
-
 const { det } = require("mathjs");
 const { Column } = Table;
 
@@ -47,7 +45,7 @@ function Cramer() {
     const createRow = () => {
       return temp.map((x, i) => (
         <tr>
-          <th>{i + 1}</th>
+          <th>{i + 1} . {span2} </th>
           {createCol(i)}
         </tr>
       ));
@@ -56,7 +54,7 @@ function Cramer() {
     const createCol = (i) => {
       return temp[0].map((x, j) => (
         <td>
-          <InputNumber defaultValue={0} size="small" onChange={value => {
+          <InputNumber defaultValue={0} size="large" onChange={value => {
             if (j === n) {
               matrixB[i] = value
             } else {
@@ -64,24 +62,53 @@ function Cramer() {
             }
           }}
           />
+          {span3}
+
         </td>
+        
       ));
     }
 
     const calmatrix = () =>{
 
+      var deta = det(matrixA)
+
+      var ans = 0
+
+      var deta2
 
 
+      for(var i=0;i<n;i++){
 
+        //var matrix = matrixA
+        var matrix = JSON.parse(JSON.stringify(matrixA));
 
+        for(var j=0;j<n;j++){
+          
+          matrix[j][i] = matrixB[j];
+        
+        }
 
+        deta2 = det(matrix)
+
+        ans = deta2/deta
+
+        queue_data.push({
+          i: "x"+i,
+          deta: deta.toFixed(6),
+          deta2: deta2.toFixed(6),
+          ans: ans.toFixed(6)
+        });
+
+        
+      }
 
 
       setdatashow(queue_data)
 
     }
 
-    const show = () => {
+    let show = () => {
       
       return(
 
@@ -89,9 +116,13 @@ function Cramer() {
 
            <Table style={{ marginTop: 30 }} dataSource={datashow}>
 
-                <Column title="det" dataIndex="i" key="i" />
+                <Column title="i" dataIndex="i" key="i" />
+
+                <Column title="deta" dataIndex="deta" key="deta" />
+
+                <Column title="deta[i]" dataIndex="deta2" key="deta2" />
  
-                <Column title="Ans" dataIndex="error" key="error" />
+                <Column title="Ans" dataIndex="ans" key="ans" />
 
            </Table>
 
@@ -109,6 +140,8 @@ function Cramer() {
     }
 
     const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+    const span2 = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+    const span3 = (<h>&nbsp;&nbsp;&nbsp;</h>);
 
         return(
 
@@ -147,13 +180,20 @@ function Cramer() {
                     <button onClick={set}>Set!</button>
 
                     {span}
+                    
 
-                   
                       
+                    <div className = "App-table" style={{ marginTop: 30 }}>
+                      
+                    {createInput(n)}{span}
+                    
+                    </div>
 
-                    {createInput(n)}
-
+                    <div className = "App-table">
+                      
                     {show()}
+
+                    </div>
                       
                       
                       

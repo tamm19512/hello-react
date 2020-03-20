@@ -129,6 +129,15 @@ section {
   font-family: sans-serif;
   text-align: center;
   background: #feffffc0;
+  color: #2d1535;
+
+  outline-style: solid;
+  outline-color: rgb(122, 223, 127);
+
+  font-family: 'Courier New', initial, monospace;
+  font-style: italic;
+  
+  font-size: 30px;
 
 
 }

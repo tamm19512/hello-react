@@ -13,6 +13,8 @@ import Secant from './Secant'
 
 import Cramer from './Cramer'
 
+import Trapezoidal from './Trapezoidal'
+
 import Test from './Test'
 
 import {
@@ -86,7 +88,83 @@ const menu3 = (
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Test</NavLink>
+            <NavLink to ="/Test" activeClassName="active">Linear Interpolation</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Test" activeClassName="active">Quadratic Interpolation</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Test" activeClassName="active">Polynomial Interpolation</NavLink>
+
+            </Menu.Item>
+
+
+      </Menu>
+
+  </div>
+
+
+);
+
+const menu4 = (
+
+  <div className = "nav">
+
+      <Menu>
+
+            <Menu.Item>
+
+            <NavLink to ="/Test" activeClassName="active">Linear Regression</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Test" activeClassName="active">Polynomial Regression</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Test" activeClassName="active">Multiple Linear Regression</NavLink>
+
+            </Menu.Item>
+
+
+      </Menu>
+
+  </div>
+
+
+);
+
+const menu5 = (
+
+  <div className = "nav">
+
+      <Menu>
+
+            <Menu.Item>
+
+            <NavLink to ="/Trapezoidal" activeClassName="active">Trapezoidal Rule</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Test" activeClassName="active">Composite Trapezoidal Rule</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Test" activeClassName="active">Simpson's Rule</NavLink>
 
             </Menu.Item>
 
@@ -134,27 +212,21 @@ function App (){
 
           {span}
           
-          <Dropdown overlay={menu3} placement="bottomLeft">
+          <Dropdown overlay={menu4} placement="bottomLeft">
 
-            <button>Least Square Method</button>
+            <button>Least Square Regression</button>
 
           </Dropdown>
 
           {span}
           
-          <Dropdown overlay={menu3} placement="bottomLeft">
+          <Dropdown overlay={menu5} placement="bottomLeft">
 
-            <button>Iterative Method</button>
+            <button>Numerical Integration and Differentation</button>
 
           </Dropdown>
 
           {span}        
-
-        <Dropdown overlay={menu3} placement="bottomLeft">
-
-          <button>Ordinary Differential Equations</button>
-
-        </Dropdown>
 
           
           
@@ -169,6 +241,8 @@ function App (){
               <Route path="/Secant" component={Secant} />
 
               <Route path="/Cramer" component={Cramer} />
+
+              <Route path="/Trapezoidal" component={Trapezoidal} />
 
               <Route path="/Test" component={Test} />
 

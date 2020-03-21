@@ -8,5 +8,5 @@ let userSchema4 = mongoose.Schema({
     x1 : {type: Number ,required : true},
 });
 
-let Secants = mongoose.model('Secants',userSchema4);
+let Secants = mongoose.model('secants',userSchema4);
 module.exports = Secants;

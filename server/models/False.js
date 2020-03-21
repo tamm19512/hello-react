@@ -7,5 +7,5 @@ let userSchema1 = mongoose.Schema({
     xl : {type: Number ,required : true},
     xr : {type: Number ,required : true}
 });
-let Falseposition = mongoose.model('falseposition',userSchema1);
+let Falseposition = mongoose.model('falsepositions',userSchema1);
 module.exports = Falseposition;

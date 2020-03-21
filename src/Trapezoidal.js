@@ -6,14 +6,16 @@ import { Select,Table} from 'antd';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 
+const { Column } = Table;
+const { Option } = Select;
+
 const { parse,create,all } = require("mathjs");
 const mathjs = create(all);
 const mathInt = require('mathjs-simple-integral');
 mathjs.import(mathInt)
 
 
-const { Column } = Table;
-const { Option } = Select;
+
 
 function Trapezoidal() {
 
@@ -27,30 +29,30 @@ function Trapezoidal() {
 
   const [getafcs, setgetafcs] = useState();
   const [getafx, setgetafx] = useState();
-  let [getaXL, setgetaXL] = useState()
-  let [getaXR, setgetaXR] = useState()
+  let [getaA, setgetaA] = useState()
+  let [getaB, setgetaB] = useState()
 
     useEffect(() => {
-      axios.get("http://localhost:3001/api/users/showbisection").then(res => {
+      axios.get("http://localhost:3001/api/users/showcomtrap").then(res => {
         console.log(res.data);
         console.log(fx, a, b)
         const tempfx = []
         const tempfcs = []
-        const tempXL = []
-        const tempXR = []
+        const tempA = []
+        const tempB = []
         for (let i = 0; i < res.data.data.length; i++) {
-          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>a : {res.data.data[i].a} || b: {res.data.data[i].b} </Option>)
+          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>fn : {res.data.data[i].fx} <br/> a : {res.data.data[i].a} <br/> b: {res.data.data[i].b} </Option>)
           tempfx.push(res.data.data[i].fx)
-          tempXL.push(res.data.data[i].a)
-          tempXR.push(res.data.data[i].b)
+          tempA.push(res.data.data[i].a)
+          tempB.push(res.data.data[i].b)
           console.log(tempfx[i])
-          console.log(tempXL[i])
-          console.log(tempXR[i])
+          console.log(tempA[i])
+          console.log(tempB[i])
         }
         setgetafcs(tempfcs)
         setgetafx(tempfx)
-        setgetaXL(tempXL)
-        setgetaXR(tempXR)
+        setgetaA(tempA)
+        setgetaB(tempB)
       })
     }, [])
 
@@ -59,8 +61,8 @@ function Trapezoidal() {
 
       
           setfx(getafx[value])
-          seta(getaXL[value])
-          setb(getaXR[value])
+          seta(getaA[value])
+          setb(getaB[value])
 
 
           console.log('fx =', fx)
@@ -111,9 +113,10 @@ function Trapezoidal() {
 
       function set() {
 
+        setfx('(2*(x^3))-(5*(x^2))+(3*x)+1');
         seta(0);
         setb(2);
-        setfx('(2*(x^3))-(5*(x^2))+(3*x)+1');
+        
     }
 
     const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
@@ -170,7 +173,7 @@ function Trapezoidal() {
                     {span}
 
 
-                       <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+                       <Select defaultValue="set from db" style={{ width: 300 }}  onChange={menu}>
 
                            {getafcs}
 

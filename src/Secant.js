@@ -34,7 +34,7 @@ function Secant() {
           const tempX0 = []
           const tempX1 = []
           for (let i = 0; i < res.data.data.length; i++) {
-            tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>x0 : {res.data.data[i].x0} || xr: {res.data.data[i].x1} </Option>)
+            tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>fn : {res.data.data[i].fx} || x0 : {res.data.data[i].x0} || xr: {res.data.data[i].x1} </Option>)
             tempfx.push(res.data.data[i].fx)
             tempX0.push(res.data.data[i].x0)
             tempX1.push(res.data.data[i].x1)
@@ -164,7 +164,7 @@ function Secant() {
 
                     {span}
                     
-                    <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+                    <Select defaultValue="set from db" style={{ width: 250 }}  onChange={menu}>
 
                        {getafcs}
 

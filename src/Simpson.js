@@ -25,45 +25,51 @@ function Simpson() {
 
     const [datashow, setdatashow] = useState();
 
-  const [getafcs, setgetafcs] = useState();
-  const [getafx, setgetafx] = useState();
-  let [getaXL, setgetaXL] = useState()
-  let [getaXR, setgetaXR] = useState()
+    const [getafcs, setgetafcs] = useState();
+    const [getafx, setgetafx] = useState();
+    let [getaA, setgetaA] = useState()
+    let [getaB, setgetaB] = useState()
+  
 
     useEffect(() => {
-      axios.get("http://localhost:3001/api/users/showbisection").then(res => {
+      axios.get("http://localhost:3001/api/users/showsimpson").then(res => {
         console.log(res.data);
         console.log(fx, a, b)
         const tempfx = []
         const tempfcs = []
-        const tempXL = []
-        const tempXR = []
+        const tempA = []
+        const tempB = []
         for (let i = 0; i < res.data.data.length; i++) {
-          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>a : {res.data.data[i].a} || b: {res.data.data[i].b} </Option>)
+          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>fn : {res.data.data[i].fx} <br/> a : {res.data.data[i].a} <br/> b: {res.data.data[i].b} </Option>)
           tempfx.push(res.data.data[i].fx)
-          tempXL.push(res.data.data[i].a)
-          tempXR.push(res.data.data[i].b)
+          tempA.push(res.data.data[i].a)
+          tempB.push(res.data.data[i].b)
           console.log(tempfx[i])
-          console.log(tempXL[i])
-          console.log(tempXR[i])
+          console.log(tempA[i])
+          console.log(tempB[i])
         }
         setgetafcs(tempfcs)
         setgetafx(tempfx)
-        setgetaXL(tempXL)
-        setgetaXR(tempXR)
+        setgetaA(tempA)
+        setgetaB(tempB)
       })
     }, [])
 
 
     function menu(value){
-   
+
+      
           setfx(getafx[value])
-          seta(getaXL[value])
-          setb(getaXR[value])
+          seta(getaA[value])
+          setb(getaB[value])
+
 
           console.log('fx =', fx)
           console.log('XL =', a)
           console.log('XR =', b)
+
+
+
 
     }
 
@@ -185,7 +191,7 @@ function Simpson() {
                     {span}
 
 
-                       <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+                       <Select defaultValue="set from db" style={{ width: 300 }}  onChange={menu}>
 
                            {getafcs}
 

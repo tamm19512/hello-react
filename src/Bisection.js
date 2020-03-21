@@ -29,16 +29,17 @@ function Bisection() {
     useEffect(() => {
       axios.get("http://localhost:3001/api/users/showbisection").then(res => {
         console.log(res.data);
-        console.log(fx, xl, xr)
-        const tempfx = []
+        console.log(fx, xl, xr)       
         const tempfcs = []
+        const tempfx = []
         const tempXL = []
         const tempXR = []
         for (let i = 0; i < res.data.data.length; i++) {
-          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>xl : {res.data.data[i].xl} || xr: {res.data.data[i].xr} </Option>)
+          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>fn : {res.data.data[i].fx} || xl : {res.data.data[i].xl} || xr: {res.data.data[i].xr} </Option>)
           tempfx.push(res.data.data[i].fx)
           tempXL.push(res.data.data[i].xl)
           tempXR.push(res.data.data[i].xr)
+
           console.log(tempfx[i])
           console.log(tempXL[i])
           console.log(tempXR[i])
@@ -52,19 +53,14 @@ function Bisection() {
 
 
     function menu(value){
-
-      
+     
           setfx(getafx[value])
           setxl(getaXL[value])
           setxr(getaXR[value])
 
-
           console.log('fx =', fx)
           console.log('XL =', xl)
           console.log('XR =', xr)
-
-
-
 
     }
 
@@ -122,7 +118,7 @@ function Bisection() {
 
                     <div className = "up-extext">
 
-                        <h1> Bisection </h1>     
+                        <h1> Bisection Method </h1>     
 
                     </div>
 
@@ -168,7 +164,7 @@ function Bisection() {
                     {span}
 
 
-                       <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+                       <Select defaultValue="set from db" style={{ width: 250 }}  onChange={menu}>
 
                            {getafcs}
 

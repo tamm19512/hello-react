@@ -9,7 +9,7 @@ import axios from 'axios';
 const { Column } = Table;
 const { Option } = Select;
 
-function Linear_inter_N() {
+function Linear_inter_L() {
 
     let [x0, setx0] = useState();
     let [x1, setx1] = useState();
@@ -29,7 +29,7 @@ function Linear_inter_N() {
     let [getaFX1, setgetaFX1] = useState()
   
       useEffect(() => {
-        axios.get("http://localhost:3001/api/users/showlinearinnew").then(res => {
+        axios.get("http://localhost:3001/api/users/showlinearinla").then(res => {
   
           const tempfcs = []
           const tempx = []
@@ -73,7 +73,7 @@ function Linear_inter_N() {
         const eror = (fx) => ((-0.3202-fx)/-0.3202)*100
         var fx
 
-        fx = fx0 + ((x-x0)*((fx1-fx0)/(x1-x0)))     
+        fx = (((x1-x)/(x1-x0))*fx0)+(((x0-x)/(x0-x1))*fx1)
 
         queue_data.push({
 
@@ -88,11 +88,11 @@ function Linear_inter_N() {
 
       function set() {
 
-        setx(3.2);
-        setx0(2);
-        setfx0(0.2239);
-        setx1(4);
-        setfx1(-0.3971);
+        setx(250);
+        setx0(-100);
+        setfx0(215);
+        setx1(400);
+        setfx1(249);
 
     }
 
@@ -104,7 +104,7 @@ function Linear_inter_N() {
 
                     <div className = "up-extext">
 
-                        <h1> Linear Interpolation (Newton) </h1>     
+                        <h1> Linear Interpolation (Lagrange) </h1>     
 
                     </div>
 
@@ -187,4 +187,4 @@ function Linear_inter_N() {
         )
     
 }
-export default Linear_inter_N;
+export default Linear_inter_L;

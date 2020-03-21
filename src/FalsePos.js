@@ -35,7 +35,8 @@ function FalsePos() {
         const tempXL = []
         const tempXR = []
         for (let i = 0; i < res.data.data.length; i++) {
-          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>xl : {res.data.data[i].xl} || xr: {res.data.data[i].xr} </Option>)
+          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>fn : {res.data.data[i].fx} || xl : {res.data.data[i].xl} || xr: {res.data.data[i].xr} </Option>)
+
           tempfx.push(res.data.data[i].fx)
           tempXL.push(res.data.data[i].xl)
           tempXR.push(res.data.data[i].xr)
@@ -123,7 +124,7 @@ function FalsePos() {
 
                     <div className = "up-extext">
 
-                        <h1> False Position </h1>     
+                        <h1> False Position Method </h1>     
 
                     </div>
 
@@ -171,7 +172,7 @@ function FalsePos() {
 
                     {span}
 
-                    <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+                    <Select defaultValue="set from db" style={{ width: 250 }}  onChange={menu}>
 
                        {getafcs}
 

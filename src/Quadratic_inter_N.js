@@ -25,23 +25,63 @@ function Quadratic_inter_N() {
 
     const [datashow, setdatashow] = useState();
 
-  const [getafcs, setgetafcs] = useState();
-  const [getafx, setgetafx] = useState();
-  let [getaXL, setgetaXL] = useState()
-  let [getaXR, setgetaXR] = useState()
+    const [getafcs, setgetafcs] = useState();
+    const [getax, setgetax] = useState();
+    let [getaX0, setgetaX0] = useState()
+    let [getaFX0, setgetaFX0] = useState()
+    let [getaX1, setgetaX1] = useState()
+    let [getaFX1, setgetaFX1] = useState()
+    let [getaX2, setgetaX2] = useState()
+    let [getaFX2, setgetaFX2] = useState()
+  
+      useEffect(() => {
+        axios.get("http://localhost:3001/api/users/showquainnew").then(res => {
+  
+          const tempfcs = []
+          const tempx = []
+          const tempX0 = []
+          const tempFX0 = []
+          const tempX1 = []
+          const tempFX1 = []
+          const tempX2 = []
+          const tempFX2 = []
 
-
-    function menu(value){
-   
-          setx(getafx[value])
-          setx0(getaXL[value])
-          setx1(getaXR[value])
-          setx2(getaXR[value])
-          setfx0(getaXL[value])
-          setfx1(getaXR[value])
-          setfx2(getaXR[value])
-
-    }
+          for (let i = 0; i < res.data.data.length; i++) {
+            tempfcs.push(<Option key={i} value={i} label={res.data.data[i].x}>x : {res.data.data[i].x}  <br/> x0 : {res.data.data[i].x0}  <br/> fx0: {res.data.data[i].fx0} 
+                                                                            <br/> x1 : {res.data.data[i].x1}  <br/> fx1: {res.data.data[i].fx1}
+                                                                            <br/> x2 : {res.data.data[i].x2}  <br/> fx2: {res.data.data[i].fx2}</Option>)
+            tempx.push(res.data.data[i].x)
+            tempX0.push(res.data.data[i].x0)
+            tempFX0.push(res.data.data[i].fx0)
+            tempX1.push(res.data.data[i].x1)
+            tempFX1.push(res.data.data[i].fx1)
+            tempX2.push(res.data.data[i].x2)
+            tempFX2.push(res.data.data[i].fx2)
+  
+          }
+          setgetafcs(tempfcs)
+          setgetax(tempx)
+          setgetaX0(tempX0)
+          setgetaFX0(tempFX0)
+          setgetaX1(tempX1)
+          setgetaFX1(tempFX1)
+          setgetaX2(tempX2)
+          setgetaFX2(tempFX2)
+        })
+      }, [])
+  
+  
+      function menu(value){
+       
+            setx(getax[value])
+            setx0(getaX0[value])
+            setfx0(getaFX0[value])
+            setx1(getaX1[value])
+            setfx1(getaFX1[value])
+            setx2(getaX2[value])
+            setfx2(getaFX2[value])
+  
+      }
 
     const trap = () => {
 

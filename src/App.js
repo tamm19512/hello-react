@@ -21,6 +21,10 @@ import Comsimpson from './Comsimpson'
 import Linear_inter_N from './Linear_inter_N'
 import Quadratic_inter_N from './Quadratic_inter_N'
 import Polynomial_inter_N from './Polynomial_inter_N'
+import Linear_inter_L from './Linear_inter_L'
+import Quadratic_inter_L from './Quadratic_inter_L'
+
+
 
 import Test from './Test'
 
@@ -38,11 +42,11 @@ const menu1 = (
       <Menu>
 
             <Menu.Item>
-                <NavLink to ="/Bisection" activeClassName="active">Bisection </NavLink>
+                <NavLink to ="/Bisection" activeClassName="active">Bisection Method</NavLink>
             </Menu.Item>
 
             <Menu.Item>
-                <NavLink to ="/FalsePos" activeClassName="active">FalsePos</NavLink>  
+                <NavLink to ="/FalsePos" activeClassName="active">False Position Method</NavLink>  
             </Menu.Item>
 
             <Menu.Item>
@@ -101,11 +105,25 @@ const menu3 = (
 
             </Menu.Item>
 
-            <Menu.Item>
+            {/* <Menu.Item>
 
             <NavLink to ="/Polynomial_inter_N" activeClassName="active">Polynomial Interpolation (Newton)</NavLink>
 
+            </Menu.Item> */}
+          
+            <Menu.Item>
+
+            <NavLink to ="/Linear_inter_L" activeClassName="active">Linear Interpolation (Lagrange)</NavLink>
+
             </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Quadratic_inter_L" activeClassName="active">Quadratic Interpolation (Lagrange)</NavLink>
+
+            </Menu.Item>
+
+            
 
 
       </Menu>
@@ -259,6 +277,8 @@ function App (){
               <Route path="/Linear_inter_N" component={Linear_inter_N} />
               <Route path="/Quadratic_inter_N" component={Quadratic_inter_N} />
               <Route path="/Polynomial_inter_N" component={Polynomial_inter_N} />
+              <Route path="/Linear_inter_L" component={Linear_inter_L} />
+              <Route path="/Quadratic_inter_L" component={Quadratic_inter_L} />
 
               <Route path="/Trapezoidal" component={Trapezoidal} />
               <Route path="/Comtrapezoidal" component={Comtrapezoidal} />

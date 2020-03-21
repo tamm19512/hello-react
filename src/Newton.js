@@ -32,7 +32,8 @@ function Newton() {
           const tempX0 = []
   
           for (let i = 0; i < res.data.data.length; i++) {
-            tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>x0 : {res.data.data[i].x0} </Option>)
+            tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>fn : {res.data.data[i].fx} || x0 : {res.data.data[i].x0} </Option>)
+
             tempfx.push(res.data.data[i].fx)
             tempX0.push(res.data.data[i].x0)
   
@@ -108,7 +109,7 @@ function Newton() {
 
                     <div className = "up-extext">
 
-                        <h1> Newton Raphon </h1>     
+                        <h1> Newton Raphson Method </h1>     
 
                     </div>
 
@@ -148,7 +149,7 @@ function Newton() {
 
                     {span}
 
-                    <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
+                    <Select defaultValue="set from db" style={{ width: 200 }}  onChange={menu}>
 
                        {getafcs}
 

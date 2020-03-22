@@ -18,6 +18,8 @@ import Comtrapezoidal from './Comtrapezoidal'
 import Simpson from './Simpson'
 import Comsimpson from './Comsimpson'
 
+
+
 import Linear_inter_N from './Linear_inter_N'
 import Quadratic_inter_N from './Quadratic_inter_N'
 import Polynomial_inter_N from './Polynomial_inter_N'
@@ -105,11 +107,11 @@ const menu3 = (
 
             </Menu.Item>
 
-            {/* <Menu.Item>
+            <Menu.Item>
 
             <NavLink to ="/Polynomial_inter_N" activeClassName="active">Polynomial Interpolation (Newton)</NavLink>
 
-            </Menu.Item> */}
+            </Menu.Item>
           
             <Menu.Item>
 

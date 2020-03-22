@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react";
 import './App.css';
 
-import { Select,Table} from 'antd';
+import { Select,Table,InputNumber} from 'antd';
 
 import 'antd/dist/antd.css';
 import axios from 'axios';
@@ -12,15 +12,13 @@ const { Option } = Select;
 
 function Polynomial_inter_N() {
 
-    let [n, setn] = useState();
-    let [x, setx] = useState();
-    let [x0, setx0] = useState();
-    let [x1, setx1] = useState();
-    let [x2, setx2] = useState();
-    let [fx0, setfx0] = useState();
-    let [fx1, setfx1] = useState();
-    let [fx2, setfx2] = useState();
+    let [n, setn] = useState(2);
+    let [x1, setxx] = useState();
+    var x = []
 
+    var temp 
+    var xx = []
+    var xy = []
 
     const queue_data = []
 
@@ -35,41 +33,116 @@ function Polynomial_inter_N() {
     function menu(value){
    
           setn(getafx[value])
-          setx(getafx[value])
-          setx0(getaXL[value])
-          setx1(getaXR[value])
-          setx2(getaXR[value])
-          setfx0(getaXL[value])
-          setfx1(getaXR[value])
-          setfx2(getaXR[value])
+          setxx(getafx[value])
 
     }
+
+    const createInput = () => {
+        temp = Array.from(Array(n), _ => Array(n).fill(0))
+        xx = Array(n).fill(0)
+        xy = Array(n).fill(0)
+        return (
+          <div >  
+            <tr>
+                
+             {span}
+
+            
+            {createHead()}
+                 
+            </tr>
+            
+            {createRow()}
+
+          </div>
+        );
+      }
+    
+      const createHead = () => {
+
+        return (
+
+            <th>
+                <div>
+                    <h>
+                        {span2}  x  {span2}{span2} fx
+                     </h>
+                </div>
+            </th>
+              
+        );
+       
+      }
+    
+      const createRow = () => {
+
+        return temp.map((x, i) => (
+          <tr>
+            <th>{i+1} . </th>
+
+            
+                {createCol(i)}
+
+                {createCol2(i)}
+
+          </tr>
+        ));
+      }
+    
+      const createCol = (i) => {
+        return (
+
+          <td>
+
+            <InputNumber defaultValue={0} size="large" onChange={value => {
+
+                xx[i] = value
+              
+            }}
+            
+            />
+  
+          </td>
+          
+        );
+      }
+      const createCol2 = (i) => {
+        return (
+
+          <td>
+
+            <InputNumber defaultValue={0} size="large" onChange={value => {
+
+                xy[i] = value
+              
+            }}
+            
+            />
+  
+          </td>
+          
+        );
+      }
 
     const trap = () => {
 
 
         const eror = (fx) => ((-0.3202-fx)/-0.3202)*100
-        var fx,c0,c1,c2
+        var fx,c0=0,c1=0,c2
 
-        c0 = fx0
+        for(var i=0;i<n;i++){
 
-        c1 = (fx1-fx0)/(x1-x0)
+            c0 = c0+xx[i];
+            c1 = c1+xy[i];
 
-        
-
-        c2 = (((fx2-fx1)/(x1-x0)) - c1) / (x2-x0)
-
-        fx = c0+(c1*(x-x0))+(c2*(x-x0)*(x-x1))
+        }
 
         queue_data.push({
 
             c0:c0.toFixed(6),
             c1:c1.toFixed(6),
-            c2:c2.toFixed(6),
 
-            fx:fx.toFixed(6),
 
-            error:eror(fx).toFixed(2)+"%"
 
         });
 
@@ -78,18 +151,14 @@ function Polynomial_inter_N() {
 
       function set() {
 
-        setn(3);
-        setx(3.2);
-        setx0(2);
-        setfx0(0.2239);
-        setx1(3);
-        setfx1(-0.2601);
-        setx2(4);
-        setfx2(-0.3971);
+        setn(2);
+        setxx(3.2);
 
     }
 
     const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+    const span2 = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+    const span3 = (<h>&nbsp;&nbsp;&nbsp;</h>);
 
         return(
 
@@ -110,8 +179,8 @@ function Polynomial_inter_N() {
 
                               type="number"
                               placeholder="Input X" 
-                              value={x}
-                              onChange={event => setx(event.target.value)} 
+                              value={xx}
+                              onChange={event => setxx(event.target.value)} 
 
                           />
 
@@ -119,63 +188,19 @@ function Polynomial_inter_N() {
 
                               type="number"
                               placeholder="Input N" 
+                              min = {2}
                               value={n}
-                              onChange={event => setn(event.target.value)} 
+                              onChange={e => setn(+e.target.value)} 
 
                           />
 
 
-                          <h2> x0 {span}{span} fx0 {span}{span} x1 {span}{span} fx1 {span}{span} x2 {span}{span} fx2 </h2>
+                    </div>
 
-                                  <input
-
-                                        type="number"
-                                        placeholder="0" 
-                                        value={x0}
-                                        onChange={event => setx0(event.target.value)} 
-
-                                    />
-
-                                  <input
-
-                                        type="number"
-                                        placeholder="0" 
-                                        value={fx0}
-                                        onChange={event => setfx0(event.target.value)} 
-
-                                  />
-
-                              
-                                  <input
-                                      type="number"
-                                      value={x1}
-                                      onChange={e => setx1(+e.target.value)}
-                                      placeholder="0"
-                                  />
-
-                                  <input
-                                      type="number"
-                                      value={fx1}
-                                      onChange={e => setfx1(+e.target.value)}
-                                      placeholder="0"
-                                  />
-                                  <input
-                                      type="number"
-                                      value={x2}
-                                      onChange={e => setx2(+e.target.value)}
-                                      placeholder="0"
-                                  />
-
-                                  <input
-                                      type="number"
-                                      value={fx2}
-                                      onChange={e => setfx2(+e.target.value)}
-                                      placeholder="0"
-                                  />
-
-        
-
-
+                    <div className = "App-table" style={{ marginTop: 30 }}>
+                      
+                         {createInput(n)}{span}
+                    
                     </div>
 
                     <button onClick={trap}>Add Them!</button>

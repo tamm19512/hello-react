@@ -18,6 +18,8 @@ import Comtrapezoidal from './Comtrapezoidal'
 import Simpson from './Simpson'
 import Comsimpson from './Comsimpson'
 
+import Linear_Regress from './Linear_Regress'
+import Polynomial_Regress from './Polynomial_Regress'
 
 
 import Linear_inter_N from './Linear_inter_N'
@@ -143,13 +145,13 @@ const menu4 = (
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Linear Regression</NavLink>
+            <NavLink to ="/Linear_Regress" activeClassName="active">Linear Regression</NavLink>
 
             </Menu.Item>
 
             <Menu.Item>
 
-            <NavLink to ="/Test" activeClassName="active">Polynomial Regression</NavLink>
+            <NavLink to ="/Polynomial_Regress" activeClassName="active">Polynomial Regression</NavLink>
 
             </Menu.Item>
 
@@ -281,6 +283,9 @@ function App (){
               <Route path="/Polynomial_inter_N" component={Polynomial_inter_N} />
               <Route path="/Linear_inter_L" component={Linear_inter_L} />
               <Route path="/Quadratic_inter_L" component={Quadratic_inter_L} />
+
+              <Route path="/Linear_Regress" component={Linear_Regress} />
+              <Route path="/Polynomial_Regress" component={Polynomial_Regress} />
 
               <Route path="/Trapezoidal" component={Trapezoidal} />
               <Route path="/Comtrapezoidal" component={Comtrapezoidal} />

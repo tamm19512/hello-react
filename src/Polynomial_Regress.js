@@ -10,7 +10,7 @@ import axios from 'axios';
 const { Column } = Table;
 const { Option } = Select;
 
-function Polynomial_inter_N() {
+function Polynomial_Regress() {
 
     let [n, setn] = useState(2);
     let [x1, setx1] = useState();
@@ -126,51 +126,33 @@ function Polynomial_inter_N() {
 
     const trap = () => {
 
-
-        const eror = (fx) => ((-0.3202-fx)/-0.3202)*100
-        
-        var fx,c,i=0,round = 1,q=1
-
-        fx = xy[0]
+      const square = x => Math.pow(x, 2);
+      var sumx=0,sumfx=0,sumx2=0,sumfx2=0,a0,a1,fx
 
 
-      for(var j=n;j!=1;j--){
+        for(var i=0;i<n;i++){
 
-        for(i=0;i<=n;i++){
+            sumx = sumx + xx[i]
+            sumfx = sumfx + xy[i]
 
-          c = (xy[i+1]-xy[i])/(xx[i+round]-xx[i])
-
-          xy[i] = c
-
+            sumx2 = sumx2 + square(xx[i])
+            sumfx2 = sumfx2 + (xx[i]*xy[i])
         }
 
-        for(var k=0;k<round;k++){    
-
-          q=q*(x1-xx[k])
-
-        }
-
-        q=q*xy[0]
-
-        fx = fx+q
+        a0 = ((sumfx*sumx2)-(sumfx2*sumx))/((n*sumx2)-(square(sumx)))
+        a1 = ((n*sumfx2)-(sumx*sumfx))/((n*sumx2)-(square(sumx)))
+        fx = a0+(a1*x1)
 
         queue_data.push({
 
-          fx:q.toFixed(6),
-          ans:fx.toFixed(6)
+            sumx:sumx.toFixed(6),
+            sumfx:sumfx.toFixed(6),
+            sumx2:sumx2.toFixed(6),
+            sumfx2:sumfx2.toFixed(6),
 
-      });
-
-        round++
-        n--;
-        q=1
-
-      }
-
-        queue_data.push({
-
-            ans:fx.toFixed(6),
-            error:eror(fx).toFixed(2)+"%"
+            a0:a0.toFixed(6),
+            a1:a1.toFixed(6),
+            fx:fx.toFixed(6),
         });
 
         setdatashow(queue_data)
@@ -195,7 +177,7 @@ function Polynomial_inter_N() {
 
                     <div className = "up-extext">
 
-                        <h1> Polynomial Interpolation (Newton) </h1>     
+                        <h1> Polynomial Regression </h1>     
 
                     </div>
 
@@ -253,9 +235,16 @@ function Polynomial_inter_N() {
                       <Table style={{ marginTop: 30 }} dataSource={datashow}>
 
 
-                        <Column title="sumFx" dataIndex="fx" key="fx" /> 
-                        <Column title="Ans" dataIndex="ans" key="ans" />
-                        <Column title="Error" dataIndex="error" key="error" />
+                        <Column title="sumx" dataIndex="sumx" key="sumx" />
+                        <Column title="sumfx" dataIndex="sumfx" key="sumfx" />
+                        <Column title="sumx2" dataIndex="sumx2" key="sumx2" />
+                        <Column title="sumfx2" dataIndex="sumfx2" key="sumfx2" />
+
+                        <Column title="A0" dataIndex="a0" key="a0" /> 
+                        <Column title="A1" dataIndex="a1" key="a1" /> 
+                        <Column title="Fx" dataIndex="fx" key="fx" /> 
+
+
                       </Table>
 
                     </div>
@@ -266,4 +255,4 @@ function Polynomial_inter_N() {
         )
     
 }
-export default Polynomial_inter_N;
+export default Polynomial_Regress;

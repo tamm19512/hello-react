@@ -18,6 +18,8 @@ let Quadratic_inter_N = require('../models/Quadratic_inter_N');
 let Linear_inter_L = require('../models/Linear_inter_L');
 let Quadratic_inter_L = require('../models/Quadratic_inter_L');
 
+let Numerdiff = require('../models/Numerdiff');
+
 
 
 
@@ -266,6 +268,23 @@ router.get('/showlinearregress', function(req, res, next) {
 router.post('/addlinearregress',(req,res)=>{
   console.log(req.body);
   let doc = new Linear_Regress(req.body);
+  doc.save((err,data)=>{
+    if(err) throw err;
+    res.send({success:true});
+  })
+})
+router.get('/shownumerdiff', function(req, res, next) {
+ 
+  Numerdiff.find().sort({age:1}).exec((err,data)=>{
+    console.log(data);
+    return res.json({success:true,data:data});
+  })
+
+});
+
+router.post('/addnumerdiff',(req,res)=>{
+  console.log(req.body);
+  let doc = new Numerdiff(req.body);
   doc.save((err,data)=>{
     if(err) throw err;
     res.send({success:true});

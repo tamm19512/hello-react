@@ -24,28 +24,32 @@ function Backward_h() {
 
   const [getafcs, setgetafcs] = useState();
   const [getafx, setgetafx] = useState();
-  let [getaA, setgetaA] = useState()
-  let [getaB, setgetaB] = useState()
+  let [getad, setgetad] = useState()
+  let [getah, setgetah] = useState()
+  let [getax, setgetax] = useState()
 
     useEffect(() => {
-      axios.get("http://localhost:3001/api/users/showtrap").then(res => {
+      axios.get("http://localhost:3001/api/users/shownumerdiff").then(res => {
 
         const tempfx = []
         const tempfcs = []
-        const tempA = []
-        const tempB = []
+        const tempd = []
+        const temph = []
+        const tempx = []
         
         for (let i = 0; i < res.data.data.length; i++) {
-          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>fn : {res.data.data[i].fx} <br/> a : {res.data.data[i].a} <br/> b: {res.data.data[i].b} </Option>)
+          tempfcs.push(<Option key={i} value={i} label={res.data.data[i].fx}>fn : {res.data.data[i].fx} <br/> d : {res.data.data[i].d} <br/> h: {res.data.data[i].h}<br/> x: {res.data.data[i].x} </Option>)
           tempfx.push(res.data.data[i].fx)
-          tempA.push(res.data.data[i].a)
-          tempB.push(res.data.data[i].b)
+          tempd.push(res.data.data[i].d)
+          temph.push(res.data.data[i].h)
+          tempx.push(res.data.data[i].x)
 
         }
         setgetafcs(tempfcs)
         setgetafx(tempfx)
-        setgetaA(tempA)
-        setgetaB(tempB)
+        setgetad(tempd)
+        setgetah(temph)
+        setgetax(tempx)
       })
     }, [])
 
@@ -54,9 +58,9 @@ function Backward_h() {
 
       
           setfx(getafx[value])
-          setd(getaA[value])
-          seth(getaB[value])
-          setx(getaB[value])
+          setd(getad[value])
+          seth(getah[value])
+          setx(getax[value])
 
     }
 

@@ -8,7 +8,7 @@ const API_PORT = 3001;
 
 //mongoDB CONNECT
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/shopper');
+mongoose.connect('mongodb+srv://stamp:pond@cluster0-nwtfa.mongodb.net/shopper');
 mongoose.Promise = global.Promise;
 
 

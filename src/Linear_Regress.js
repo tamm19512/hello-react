@@ -17,242 +17,276 @@ function Linear_Regress() {
     var x = []
 
     var temp 
+
     var xx = []
     var xy = []
+
+    
 
     const queue_data = []
 
     const [datashow, setdatashow] = useState();
 
   const [getafcs, setgetafcs] = useState();
-  const [getafx, setgetafx] = useState();
-  let [getaXL, setgetaXL] = useState()
-  let [getaXR, setgetaXR] = useState()
+  const [getan, setgetan] = useState();
+  const [getax1, setgetax1] = useState();
+  let [getaxx, setgetaxx] = useState()
+  let [getaxy, setgetaxy] = useState()
 
+  useEffect(() => {
+    
+        axios.get("http://localhost:3001/api/users/showlinearregress").then(res => {
+
+          const tempfcs = []
+          const tempn = []
+          const tempx1 = []
+          const tempxx = []
+          const tempxy = []
+          
+          for (let i = 0; i < res.data.data.length; i++) {
+            tempfcs.push(<Option key={i} value={i} label={res.data.data[i].n}>N : {res.data.data[i].n} <br/> Value : {res.data.data[i].x1} <br/> 
+                           X : {res.data.data[i].xx} <br/>  Fx : {res.data.data[i].xy} <br/></Option>)
+            tempn.push(res.data.data[i].n)
+            tempx1.push(res.data.data[i].x1)
+            tempxx.push(res.data.data[i].xx)
+            tempxy.push(res.data.data[i].xy)
+
+          }
+          setgetafcs(tempfcs)
+          setgetan(tempn)
+          setgetax1(tempx1)
+          setgetaxx(tempxx)
+          setgetaxy(tempxy)
+        })
+    }, [])
 
     function menu(value){
-   
-          setn(getafx[value])
-          setx1(getafx[value])
+
+          xx=getaxx[value]
+          xy=getaxy[value]
+          
+          setn(getan[value])
+          setx1(getax1[value])
+          
+          
+          
 
     }
 
     const createInput = () => {
-        temp = Array.from(Array(n), _ => Array(n).fill(0))
-        xx = Array(n).fill(0)
-        xy = Array(n).fill(0)
-        return (
-          <div >  
-            <tr>
-                
-             {span}
-
-            
-            {createHead()}
-                 
-            </tr>
-            
-            {createRow()}
-
-          </div>
-        );
-      }
-    
-      const createHead = () => {
-
-        return (
-
-            <th>
-                <div>
-                    <h>
-                        {span2}  x  {span2}{span2} fx
-                     </h>
-                </div>
-            </th>
-              
-        );
-       
-      }
-    
-      const createRow = () => {
-
-        return temp.map((x, i) => (
+      temp = Array.from(Array(n), _ => Array(n).fill(0))
+      xx = Array(n).fill(0)
+      xy = Array(n).fill(0)
+      return (
+        <div >  
           <tr>
-            <th>{i+1} . </th>
+              
+           {span}
 
-            
-                {createCol(i)}
-
-                {createCol2(i)}
-
+          
+          {createHead()}
+               
           </tr>
-        ));
-      }
-    
-      const createCol = (i) => {
-        return (
-
-          <td>
-
-            <InputNumber defaultValue={0} size="large" onChange={value => {
-
-                xx[i] = value
-              
-            }}
-            
-            />
-  
-          </td>
           
-        );
-      }
-      const createCol2 = (i) => {
-        return (
+          {createRow()}
 
-          <td>
-
-            <InputNumber defaultValue={0} size="large" onChange={value => {
-
-                xy[i] = value
-              
-            }}
-            
-            />
+        </div>
+      );
+    }
   
-          </td>
+    const createHead = () => {
+
+      return (
+
+          <th>
+              <div>
+                  <h>
+                      {span2}  x  {span2}{span2} fx
+                   </h>
+              </div>
+          </th>
+            
+      );
+     
+    }
+  
+    const createRow = () => {
+
+      return temp.map((x, i) => (
+        <tr>
+          <th>{i+1} . </th>
+
           
-        );
-      }
+              {createCol(i)}
 
-    const trap = () => {
+              {createCol2(i)}
 
-      const square = x => Math.pow(x, 2);
-      var sumx=0,sumfx=0,sumx2=0,sumfx2=0,a0,a1,fx
+        </tr>
+      ));
+    }
+  
+    const createCol = (i) => {
+      return (
 
+        <td>
 
-        for(var i=0;i<n;i++){
+          <InputNumber defaultValue={0} size="large" onChange={value => {
 
-            sumx = sumx + xx[i]
-            sumfx = sumfx + xy[i]
+              xx[i] = value
+            
+          }}
+          
+          />
 
-            sumx2 = sumx2 + square(xx[i])
-            sumfx2 = sumfx2 + (xx[i]*xy[i])
-        }
+        </td>
+        
+      );
+    }
+    const createCol2 = (i) => {
+      return (
 
-        a0 = ((sumfx*sumx2)-(sumfx2*sumx))/((n*sumx2)-(square(sumx)))
-        a1 = ((n*sumfx2)-(sumx*sumfx))/((n*sumx2)-(square(sumx)))
-        fx = a0+(a1*x1)
+        <td>
 
-        queue_data.push({
+          <InputNumber defaultValue={0} size="large" onChange={value => {
 
-            sumx:sumx.toFixed(6),
-            sumfx:sumfx.toFixed(6),
-            sumx2:sumx2.toFixed(6),
-            sumfx2:sumfx2.toFixed(6),
+              xy[i] = value
+            
+          }}
+          
+          />
 
-            a0:a0.toFixed(6),
-            a1:a1.toFixed(6),
-            fx:fx.toFixed(6),
-        });
-
-        setdatashow(queue_data)
-      }
-
-      function set() {
-
-        setn(4);
-        setx1(2.4);
-
-        xx[0] = -100
-
+        </td>
+        
+      );
     }
 
-    const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
-    const span2 = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
-    const span3 = (<h>&nbsp;&nbsp;&nbsp;</h>);
+  const trap = () => {
 
-        return(
-
-                <div className = "App">
-
-                    <div className = "up-extext">
-
-                        <h1> Linear Regression </h1>     
-
-                    </div>
-
-                    <div className = "text-topic">
+    const square = x => Math.pow(x, 2);
+    var sumx=0,sumfx=0,sumx2=0,sumfx2=0,a0,a1,fx
 
 
-                          <h2> X {span}{span} N</h2>
+      for(var i=0;i<n;i++){
 
-                          <input
+          sumx = sumx + xx[i]
+          sumfx = sumfx + xy[i]
 
-                              type="number"
-                              placeholder="Input X" 
-                              value={x1}
-                              onChange={event => setx1(event.target.value)} 
+          sumx2 = sumx2 + square(xx[i])
+          sumfx2 = sumfx2 + (xx[i]*xy[i])
+      }
 
-                          />
+      a0 = ((sumfx*sumx2)-(sumfx2*sumx))/((n*sumx2)-(square(sumx)))
+      a1 = ((n*sumfx2)-(sumx*sumfx))/((n*sumx2)-(square(sumx)))
+      fx = a0+(a1*x1)
 
-                          <input
+      queue_data.push({
 
-                              type="number"
-                              placeholder="Input N" 
-                              min = {2}
-                              value={n}
-                              onChange={e => setn(+e.target.value)} 
+          sumx:sumx.toFixed(6),
+          sumfx:sumfx.toFixed(6),
+          sumx2:sumx2.toFixed(6),
+          sumfx2:sumfx2.toFixed(6),
 
-                          />
+          a0:a0.toFixed(6),
+          a1:a1.toFixed(6),
+          fx:fx.toFixed(6),
+      });
+
+      setdatashow(queue_data)
+    }
+
+    function set() {
+
+      setn(4);
+      setx1(2.4);
+
+  }
+
+  const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+  const span2 = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+  const span3 = (<h>&nbsp;&nbsp;&nbsp;</h>);
+
+      return(
+
+              <div className = "App">
+
+                  <div className = "up-extext">
+
+                      <h1> Linear Regression </h1>     
+
+                  </div>
+
+                  <div className = "text-topic">
 
 
-                    </div>
+                        <h2> X {span}{span} N</h2>
 
-                    <div className = "App-table" style={{ marginTop: 30 }}>
-                      
-                         {createInput(n)}{span}
+                        <input
+
+                            type="number"
+                            placeholder="Input X" 
+                            value={x1}
+                            onChange={event => setx1(event.target.value)} 
+
+                        />
+
+                        <input
+
+                            type="number"
+                            placeholder="Input N" 
+                            min = {2}
+                            value={n}
+                            onChange={e => setn(+e.target.value)} 
+
+                        />
+
+
+                  </div>
+
+                  <div className = "App-table" style={{ marginTop: 30 }}>
                     
-                    </div>
+                       {createInput(n)}{span}
+                  
+                  </div>
 
-                    <button onClick={trap}>Add Them!</button>
+                  <button onClick={trap}>Add Them!</button>
 
-                    {span}
-                    
-                    <button onClick={set}>Set!</button>
+                  {span}
+                  
+                  <button onClick={set}>Set!</button>
 
-                    {span}
-
-
-                       <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
-
-                           {getafcs}
-
-                       </Select>
-      
-
-                    <div className = "App-table">
-
-                      <Table style={{ marginTop: 30 }} dataSource={datashow}>
+                  {span}
 
 
-                        <Column title="sumx" dataIndex="sumx" key="sumx" />
-                        <Column title="sumfx" dataIndex="sumfx" key="sumfx" />
-                        <Column title="sumx2" dataIndex="sumx2" key="sumx2" />
-                        <Column title="sumfx2" dataIndex="sumfx2" key="sumfx2" />
+                     <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
 
-                        <Column title="A0" dataIndex="a0" key="a0" /> 
-                        <Column title="A1" dataIndex="a1" key="a1" /> 
-                        <Column title="Fx" dataIndex="fx" key="fx" /> 
+                         {getafcs}
 
-
-                      </Table>
-
-                    </div>
-
-
-                </div>
-
-        )
+                     </Select>
     
+
+                  <div className = "App-table">
+
+                    <Table style={{ marginTop: 30 }} dataSource={datashow}>
+
+
+                      <Column title="sumx" dataIndex="sumx" key="sumx" />
+                      <Column title="sumfx" dataIndex="sumfx" key="sumfx" />
+                      <Column title="sumx2" dataIndex="sumx2" key="sumx2" />
+                      <Column title="sumfx2" dataIndex="sumfx2" key="sumfx2" />
+
+                      <Column title="A0" dataIndex="a0" key="a0" /> 
+                      <Column title="A1" dataIndex="a1" key="a1" /> 
+                      <Column title="Fx" dataIndex="fx" key="fx" /> 
+
+
+                    </Table>
+
+                  </div>
+
+
+              </div>
+
+      )
+  
 }
 export default Linear_Regress;

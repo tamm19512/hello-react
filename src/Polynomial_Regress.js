@@ -183,7 +183,6 @@ function Polynomial_Regress() {
 
                     <div className = "text-topic">
 
-
                           <h2> X {span}{span} N</h2>
 
                           <input
@@ -204,7 +203,6 @@ function Polynomial_Regress() {
                               onChange={e => setn(+e.target.value)} 
 
                           />
-
 
                     </div>
 

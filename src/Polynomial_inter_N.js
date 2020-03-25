@@ -24,19 +24,6 @@ function Polynomial_inter_N() {
 
     const [datashow, setdatashow] = useState();
 
-  const [getafcs, setgetafcs] = useState();
-  const [getafx, setgetafx] = useState();
-  let [getaXL, setgetaXL] = useState()
-  let [getaXR, setgetaXR] = useState()
-
-
-    function menu(value){
-   
-          setn(getafx[value])
-          setx1(getafx[value])
-
-    }
-
     const createInput = () => {
         temp = Array.from(Array(n), _ => Array(n).fill(0))
         xx = Array(n).fill(0)
@@ -240,12 +227,6 @@ function Polynomial_inter_N() {
 
                     {span}
 
-
-                       <Select defaultValue="set from db" style={{ width: 150 }}  onChange={menu}>
-
-                           {getafcs}
-
-                       </Select>
       
 
                     <div className = "App-table">

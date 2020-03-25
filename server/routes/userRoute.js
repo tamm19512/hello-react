@@ -11,6 +11,8 @@ let Comtrap = require('../models/Comtrap');
 let Simpson = require('../models/Simpson');
 let Comsimp = require('../models/Comsimp');
 
+let Linear_Regress = require('../models/Linear_Regress');
+
 let Linear_inter_N = require('../models/Linear_inter_N');
 let Quadratic_inter_N = require('../models/Quadratic_inter_N');
 let Linear_inter_L = require('../models/Linear_inter_L');
@@ -119,6 +121,7 @@ router.get('/showtrap', function(req, res, next) {
 
 });
 
+
 router.post('/addtrap',(req,res)=>{
   console.log(req.body);
   let doc = new Trap(req.body);
@@ -137,6 +140,7 @@ router.get('/showcomtrap', function(req, res, next) {
 
 });
 
+
 router.post('/addcomtrap',(req,res)=>{
   console.log(req.body);
   let doc = new Comtrap(req.body);
@@ -145,6 +149,8 @@ router.post('/addcomtrap',(req,res)=>{
     res.send({success:true});
   })
 })
+
+
 router.get('/showsimpson', function(req, res, next) {
  
   Simpson.find().sort({age:1}).exec((err,data)=>{
@@ -243,6 +249,23 @@ router.get('/showquainla', function(req, res, next) {
 router.post('/addquainla',(req,res)=>{
   console.log(req.body);
   let doc = new Quadratic_inter_L(req.body);
+  doc.save((err,data)=>{
+    if(err) throw err;
+    res.send({success:true});
+  })
+})
+router.get('/showlinearregress', function(req, res, next) {
+ 
+  Linear_Regress.find().sort({age:1}).exec((err,data)=>{
+    console.log(data);
+    return res.json({success:true,data:data});
+  })
+
+});
+
+router.post('/addlinearregress',(req,res)=>{
+  console.log(req.body);
+  let doc = new Linear_Regress(req.body);
   doc.save((err,data)=>{
     if(err) throw err;
     res.send({success:true});

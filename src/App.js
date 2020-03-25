@@ -30,6 +30,13 @@ import Quadratic_inter_L from './Quadratic_inter_L'
 
 
 
+import Forward_h from './Forward_h'
+import Forward_h2 from './Forward_h2'
+import Backward_h from './Backward_h'
+import Backward_h2 from './Backward_h2'
+import Central_h2 from './Central_h2'
+import Central_h4 from './Central_h4'
+
 import Test from './Test'
 
 import {
@@ -149,17 +156,17 @@ const menu4 = (
 
             </Menu.Item>
 
-            <Menu.Item>
+            {/* <Menu.Item>
 
             <NavLink to ="/Polynomial_Regress" activeClassName="active">Polynomial Regression</NavLink>
 
-            </Menu.Item>
+            </Menu.Item> */}
 
-            <Menu.Item>
+            {/* <Menu.Item>
 
             <NavLink to ="/Test" activeClassName="active">Multiple Linear Regression</NavLink>
 
-            </Menu.Item>
+            </Menu.Item> */}
 
 
       </Menu>
@@ -207,9 +214,59 @@ const menu5 = (
 
 );
 
+const menu6 = (
+
+  <div className = "nav">
+
+      <Menu>
+
+            <Menu.Item>
+
+            <NavLink to ="/Forward_h" activeClassName="active">Forward Divided Difference (h)</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Forward_h2" activeClassName="active">Forward Divided Difference (h^2)</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Backward_h" activeClassName="active">Backward Divided-Difference (h)</NavLink>
+
+            </Menu.Item>
+
+            <Menu.Item>
+
+            <NavLink to ="/Backward_h2" activeClassName="active">Backward Divided-Difference (h^2)</NavLink>
+
+            </Menu.Item>
+            <Menu.Item>
+
+            <NavLink to ="/Central_h2" activeClassName="active">Central Divided-Difference (h^2)</NavLink>
+
+            </Menu.Item>
+            <Menu.Item>
+
+            <NavLink to ="/Central_h4" activeClassName="active">Central Divided-Difference (h^4)</NavLink>
+
+            </Menu.Item>
+
+
+
+      </Menu>
+
+  </div>
+
+
+);
+
 function App (){
 
   const span = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
+  const span2 = (<h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h>);
 
   
   return (
@@ -221,7 +278,7 @@ function App (){
 
          <NavLink exact to ="/" activeClassName="active">Home </NavLink>
 
-          {span}
+          {span2}
 
           <Dropdown overlay={menu1} placement="bottomLeft">
 
@@ -229,7 +286,7 @@ function App (){
 
           </Dropdown>
 
-          {span}
+          {span2}
 
           <Dropdown overlay={menu2} placement="bottomLeft">
 
@@ -237,7 +294,7 @@ function App (){
 
           </Dropdown>
 
-          {span}
+          {span2}
 
           <Dropdown overlay={menu3} placement="bottomLeft">
 
@@ -245,7 +302,7 @@ function App (){
 
           </Dropdown>
 
-          {span}
+          {span2}
           
           <Dropdown overlay={menu4} placement="bottomLeft">
 
@@ -253,15 +310,22 @@ function App (){
 
           </Dropdown>
 
-          {span}
+          {span2}
           
           <Dropdown overlay={menu5} placement="bottomLeft">
 
-            <button>Numerical Integration <br/> and Differentation</button>
+            <button>Numerical Integration</button>
 
           </Dropdown>
 
-          {span}        
+          {span2}  
+
+          
+          <Dropdown overlay={menu6} placement="bottomLeft">
+
+            <button>Numerical Differentation</button>
+
+          </Dropdown>     
 
           
           
@@ -291,6 +355,13 @@ function App (){
               <Route path="/Comtrapezoidal" component={Comtrapezoidal} />
               <Route path="/Simpson" component={Simpson} />
               <Route path="/Comsimpson" component={Comsimpson} />
+
+              <Route path="/Forward_h" component={Forward_h} />
+              <Route path="/Forward_h2" component={Forward_h2} />
+              <Route path="/Backward_h" component={Backward_h} />
+              <Route path="/Backward_h2" component={Backward_h2} />
+              <Route path="/Central_h2" component={Central_h2} />
+              <Route path="/Central_h4" component={Central_h4} />
 
               <Route path="/Test" component={Test} />
 

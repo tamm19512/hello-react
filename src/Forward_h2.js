@@ -9,15 +9,13 @@ import axios from 'axios';
 const { Column } = Table;
 const { Option } = Select;
 
-const { parse,create,all } = require("mathjs");
-const mathjs = create(all);
-const mathInt = require('mathjs-simple-integral');
-mathjs.import(mathInt)
+const { parse,derivative } = require("mathjs");
 
-function Trapezoidal() {
+function Forward_h2() {
 
-    let [a, seta] = useState();
-    let [b, setb] = useState();
+    let [d, setd] = useState();
+    let [h, seth] = useState();
+    let [x, setx] = useState();
     let [fx, setfx] = useState();
 
     const queue_data = []
@@ -56,53 +54,55 @@ function Trapezoidal() {
 
       
           setfx(getafx[value])
-          seta(getaA[value])
-          setb(getaB[value])
+          setd(getaA[value])
+          seth(getaB[value])
+          setx(getaB[value])
 
     }
 
     const trap = () => {
       
-        const f = (fx, value) => parse(fx).evaluate({ x: value })
-        const inte =  mathjs.integral(fx,'x')
-        const toString = inte.toString()
+        const f = (value) => parse(fx).evaluate({ x: value });
+
+        var ans = 0, ans2 = 0
+
+        if (d === 1) {
+            ans = (-f(x+(2*h) ) +4 * f(x+h) -3 * f(x)) / (2*h)
+            ans2 = derivative(fx, 'x').evaluate({x});
+        } else if (d === 2) {
+            ans = (-f(x + (3 * h)) + 4 * f(x +(2*h)) - 5 * f(x+h)+ 2 * f(x)) / Math.pow(h, 2)
+            ans2 = derivative(derivative(fx, 'x'), 'x').evaluate({x});
+         } else if (d === 3) {
+            ans = (-3 * f(x + (4 * h)) + 14 * f(x + (3 * h)) - 24 * f(x +(2*h) ) + 18 * f(x+h) -5* f(x)) / (Math.pow(h, 3)*2)
+            ans2 = derivative(derivative(derivative(fx, 'x'), 'x'), 'x').evaluate({x});
+        } else if (d === 4) {
+            ans = (-2 *f(x + (5 * h)) + 11 * f(x + (4 * h)) - 24 * f(x +(3*h) ) + 26 * f(x +(2*h) ) -14* f(x+h) +3* f(x)) / Math.pow(h, 4)
+            ans2 = derivative(derivative(derivative(derivative(fx, 'x'), 'x'), 'x'), 'x').evaluate({x});
+        }
+
         
-
-        const eror = (ans, I) => ((ans - I) / ans)*100
-        
-        var x0,x1,I,a1,a2,ans
-        var I2 = ""
-
-        x0 = f(fx,a)
-        x1 = f(fx,b)
-        I = ((b-a)/2)*(x0+x1)
-
-        I2 = toString
-
-        a1 = f(I2,a)
-        a2 = f(I2,b)
-
-        ans = a2-a1
+   
+        var eror = Math.abs((ans2 - ans) / ans2)
 
           queue_data.push({
-            
-            x0: x0.toFixed(6),
-            x1: x1.toFixed(6),
-            I: I.toFixed(6),
+
             ans: ans.toFixed(6),
-            error: eror(ans, I).toFixed(2)+" %"
+            ans2: ans2.toFixed(6),
+            eror: eror.toFixed(6)
+            
           });
 
-        
 
         setdatashow(queue_data)
       }
 
+
       function set() {
 
-        setfx('(2*(x^3))-(5*(x^2))+(3*x)+1');
-        seta(0);
-        setb(2);
+        setfx('(-0.1x^4)-(0.15x^3)-(0.5x^2)-(0.25x)+1.2');
+        setd(2);
+        seth(1);
+        setx(0.5);
         
     }
 
@@ -114,7 +114,7 @@ function Trapezoidal() {
 
                     <div className = "up-extext">
 
-                        <h1> Trapezoidal Rule </h1>     
+                        <h1> Forward Divided Difference (h^2)</h1>     
 
                     </div>
 
@@ -131,20 +131,26 @@ function Trapezoidal() {
 
                           />
 
-                          <h2> a {span}{span} b </h2>
+                          <h2> D {span}{span} H {span}{span} X</h2>
 
                               
                                   <input
                                       type="number"
-                                      value={a}
-                                      onChange={e => seta(+e.target.value)}
+                                      value={d}
+                                      onChange={e => setd(+e.target.value)}
                                       placeholder="0"
                                   />
 
                                   <input
                                       type="number"
-                                      value={b}
-                                      onChange={e => setb(+e.target.value)}
+                                      value={h}
+                                      onChange={e => seth(+e.target.value)}
+                                      placeholder="0"
+                                  />
+                                  <input
+                                      type="number"
+                                      value={x}
+                                      onChange={e => setx(+e.target.value)}
                                       placeholder="0"
                                   />
 
@@ -170,11 +176,10 @@ function Trapezoidal() {
                     <div className = "App-table">
 
                       <Table style={{ marginTop: 30 }} dataSource={datashow}>
-                        <Column title="x0" dataIndex="x0" key="x0" />
-                        <Column title="x1" dataIndex="x1" key="x1" />
-                        <Column title="I" dataIndex="I" key="I" />
                         <Column title="Ans" dataIndex="ans" key="ans" />
-                        <Column title="Error" dataIndex="error" key="error" />
+                        <Column title="Ans2" dataIndex="ans2" key="ans2" />
+                        <Column title="Eror" dataIndex="eror" key="e" />
+
                       </Table>
 
                     </div>
@@ -185,4 +190,4 @@ function Trapezoidal() {
         )
     
 }
-export default Trapezoidal;
+export default Forward_h2;

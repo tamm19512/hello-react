@@ -36,8 +36,6 @@ import Backward_h2 from './Backward_h2'
 import Central_h2 from './Central_h2'
 import Central_h4 from './Central_h4'
 
-import Test from './Test'
-
 import {
   Route,
   NavLink,
@@ -158,12 +156,6 @@ const menu4 = (
             {/* <Menu.Item>
 
             <NavLink to ="/Polynomial_Regress" activeClassName="active">Polynomial Regression</NavLink>
-
-            </Menu.Item> */}
-
-            {/* <Menu.Item>
-
-            <NavLink to ="/Test" activeClassName="active">Multiple Linear Regression</NavLink>
 
             </Menu.Item> */}
 
@@ -361,8 +353,6 @@ function App (){
               <Route path="/Backward_h2" component={Backward_h2} />
               <Route path="/Central_h2" component={Central_h2} />
               <Route path="/Central_h4" component={Central_h4} />
-
-              <Route path="/Test" component={Test} />
 
             </Switch>
         
